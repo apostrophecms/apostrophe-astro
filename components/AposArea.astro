@@ -1,0 +1,29 @@
+---
+import AposWidget from './AposWidget.astro';
+
+const { area, ...props } = Astro.props
+
+let attributes = {}
+const widgets = area?.items
+
+const isEdit = area?._edit && Astro.url.searchParams.get('aposEdit')
+if (isEdit) {
+    attributes = {
+        'data-apos-area-newly-editable': '',
+        'data-doc-id': area?._docId,
+        'data-area-id': area?._id,
+        'data-field-id': area?.field?._id,
+        'data-options': JSON.stringify(area?.options),
+        'data-choices': JSON.stringify(area?.choices),
+        'data': JSON.stringify(area)
+    }
+}
+const Wrapper = isEdit ? 'div' : Fragment
+---
+<Wrapper {...attributes}>
+{widgets?.map((item) => {
+    return (
+        <AposWidget widget={item} {...props}/>
+    )
+    })}
+</Wrapper>

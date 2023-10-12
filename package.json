@@ -1,0 +1,9 @@
+{
+  "name": "@michelin-cxf/astro-apostrophe-integration",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Apostrophe integration for Astro",
+  "main": "index.js",
+  "author": "Stephane Maccari",
+  "license": "ISC"
+}

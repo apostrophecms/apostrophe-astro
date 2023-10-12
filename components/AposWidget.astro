@@ -1,0 +1,24 @@
+--- 
+import { widgets } from 'virtual:apostrophe-doctypes'
+
+const { widget, ...props } = Astro.props
+
+const isEdit = widget._edit && Astro.url.searchParams.get('aposEdit')
+
+const key = widget.type
+const componentFound = key in widgets
+
+let Component
+
+if (!componentFound) {
+    console.log('Missing widget mapping for ' + key)
+} else {
+  Component = widgets[key];
+}
+const Wrapper = isEdit ? 'div' : Fragment
+--- 
+{ Component && 
+      <Wrapper data-apos-widget={widget._id}>
+        <Component {widget} {...props}/>
+      </Wrapper>
+}

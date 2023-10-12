@@ -1,0 +1,18 @@
+---
+const { title, bodyClass, lang } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang={ lang }>
+    <head>
+        <slot name="startHead"/>
+        <title>{ title }</title>
+        <slot name="standardHead"/>
+        <slot name="extraHead"/>
+    </head>
+    <body class={ bodyClass }>
+        <slot name="beforeMain"/>
+        <slot name="main"/>
+        <slot name="afterMain"/>
+    </body>
+</html>

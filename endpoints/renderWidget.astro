@@ -1,0 +1,13 @@
+--- 
+import AposWidget from "../components/AposWidget.astro";
+import aposResponse from "../lib/aposResponse"
+
+const request = new Request(Astro.request)
+request.headers.set('x-requested-with', 'ExternalFront')
+const response = await aposResponse(request)
+const responseBody = await response.json()
+
+const { widget, ...props } = responseBody
+
+---
+<AposWidget {widget} {...props} />

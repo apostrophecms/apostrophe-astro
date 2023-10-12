@@ -1,0 +1,17 @@
+---
+import { templates } from 'virtual:apostrophe-doctypes'
+
+const { aposData } = Astro.props
+
+if (!aposData.page) {
+    Astro.response.status = 404
+    aposData.page = {
+      type: 'apos-not-found',
+    }
+}
+const templateFound = aposData.page.type in templates
+const pageType = templateFound ? aposData.page.type : 'apos-no-template'
+
+const Template = templates[pageType]
+---
+{ Template && <Template {aposData} /> }
