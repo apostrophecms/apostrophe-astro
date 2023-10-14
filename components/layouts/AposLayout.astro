@@ -13,8 +13,8 @@ if (config.forwardHeaders && Array.isArray(config.forwardHeaders)) {
         for (const header of config.forwardHeaders) {
             let aposHeader = headers.get(header)
             // Astro is not compatible with nonce in CSP
-            if (header === 'content-security-policy') aposHeader = aposHeader.replace(/script-src[^;]+/g, (match) => match.replace(/'nonce-[^']+'\s*/g, ''));
-            if (headers.get(header)) Astro.response.headers.set(header, aposHeader)
+            if (aposHeader && header === 'content-security-policy') aposHeader = aposHeader.replace(/script-src[^;]+/g, (match) => match.replace(/'nonce-[^']+'\s*/g, ''));
+            if (aposHeader) Astro.response.headers.set(header, aposHeader)
         }
     }
 }
@@ -28,6 +28,7 @@ if (aposData.errorFetchingPage) {
 const LayoutComponent = aposData.user ? (Astro.url.searchParams.get('aposRefresh') ? AposRefreshLayout : AposEditLayout) : AposRunLayout
 ---
 <LayoutComponent {...Astro.props}>
+    <slot name="startBody" slot="startBody"/>
     <slot name="startHead" slot="startHead"/>
     <slot name="standardHead" slot="standardHead"/>
     <slot name="extraHead" slot="extraHead"/>
@@ -35,4 +36,5 @@ const LayoutComponent = aposData.user ? (Astro.url.searchParams.get('aposRefresh
     <slot name="beforeMain" slot="beforeMain"/>
     <slot name="main" slot="main"/>
     <slot name="afterMain" slot="afterMain"/>
+    <slot name="endBody" slot="endBody"/>
 </LayoutComponent>

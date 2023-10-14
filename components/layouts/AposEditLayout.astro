@@ -12,7 +12,7 @@ const bundleSrc = `${aposData.aposBodyData?.assetBaseUrl}/apos-module-bundle.js`
         <slot name="extraHead"/>
     </head>
     <body data-apos-generated class={ bodyClass } data-apos={ JSON.stringify(aposData.aposBodyData) }>
-
+        <slot name="startBody"/>
         <div id="apos-busy"></div>
         <div id="apos-admin-bar"></div>
         <div id="apos-notification"></div>
@@ -27,5 +27,6 @@ const bundleSrc = `${aposData.aposBodyData?.assetBaseUrl}/apos-module-bundle.js`
         <div id="apos-command-menu"></div>
 
         <script src={bundleSrc} is:inline />
+        <slot name="endBody"/>
     </body>
 </html>

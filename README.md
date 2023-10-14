@@ -123,9 +123,11 @@ It will come with those slots, very related to what we have in the Nunjucks bloc
 - `startHead`: slot in the very beginning of the `<head>`
 - `standardHead`: slot in the middle of `<head>`, just after `<title>`  
 - `extrahead`: still in the HTML `<head>`, at the very end
-- `beforeMain`: at the very beginning of the `<body>`
-- `main`: the inner part of the `<body>`
-- `afterMain`: at the very end of `<body>`  
+- `startBody`: at the very beginning of the `<body>` - this is not part of the refresh zone in edit mode
+- `beforeMain`: at the very beginning of the main body zone - part of the refresh zone in edit mode
+- `main`: the inner part of the main body zone - part of the refresh zone in edit mode
+- `afterMain`: at the very end of the main body zone - part of the refresh zone in edit mode
+- `endBody`: at the very end of the `<body>` - this is not part of the refresh zone in edit mode
 
 This Layout component has 4 props: 
 - `aposData`: the data fetched from Apostrophe

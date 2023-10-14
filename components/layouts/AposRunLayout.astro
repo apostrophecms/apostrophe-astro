@@ -11,8 +11,10 @@ const { title, bodyClass, lang } = Astro.props
         <slot name="extraHead"/>
     </head>
     <body class={ bodyClass }>
+        <slot name="startBody"/>
         <slot name="beforeMain"/>
         <slot name="main"/>
         <slot name="afterMain"/>
+        <slot name="endBody"/>
     </body>
 </html>
