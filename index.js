@@ -52,6 +52,10 @@ export default function apostropheIntegration(options) {
                     pattern: '/[locale]/login',
                     entryPoint: '@michelin-cxf/astro-apostrophe-integration/endpoints/aposProxy.js'
                     })
+                injectRoute({
+                    pattern: '/uploads/[...slug]',
+                    entryPoint: '@michelin-cxf/astro-apostrophe-integration/endpoints/aposProxy.js'
+                    })
             }
         }
     }
