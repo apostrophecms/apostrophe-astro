@@ -68,7 +68,7 @@ const doctypes = {
     '@apostrophe-cms/home-page': HomePage,
     'custom-page': CustomPage
 }
- export defaut doctypes
+ export default doctypes
 ```
 The naming of your Astro template belongs to you, there is no rule.   
 The integration comes with 3 specific page types added to what you have in your Apostrophe instance:  
@@ -92,7 +92,7 @@ const doctypes = {
     '@apostrophe-cms/image': Image,
     'custom': CustomWidget
 }
- export defaut doctypes
+ export default doctypes
 ```
 Note that the Apostrophe `doctype` is the name of your widget module without the `-widget`.  
 The naming of your Astro widgets belongs to you, there is no rule.  
@@ -121,7 +121,7 @@ In your `[...slug].astro` file, use the `AposLayout` component coming with this 
 It will come with those slots, very related to what we have in the Nunjucks blocks of Apostrophe: 
 - `startHead`: slot in the very beginning of the `<head>`
 - `standardHead`: slot in the middle of `<head>`, just after `<title>`  
-- `extrahead`: still in the HTML `<head>`, at the very end
+- `extraHead`: still in the HTML `<head>`, at the very end
 - `startBody`: at the very beginning of the `<body>` - this is not part of the refresh zone in edit mode
 - `beforeMain`: at the very beginning of the main body zone - part of the refresh zone in edit mode
 - `main`: the inner part of the main body zone - part of the refresh zone in edit mode
@@ -159,7 +159,7 @@ It takes one prop that is the full `aposData` object.
 You will have then this object in your template `Astro.props`.   
 
 ### Create your Astro template
-Create your Astro file for your particular template, in which, if needed you will us the `<AposArea>` component to display your Apostrophe areas and then widgets.   
+Create your Astro file for your particular template, in which, if needed you will use the `<AposArea>` component to display your Apostrophe areas and then widgets.   
 For example, for the `@apostrophe-cms/home-page` that has mainly one field that is the `main` area:   
 ```js
 ---
@@ -169,7 +169,7 @@ const area = page.main
 ---
 <AposArea {area}/>
 ```
-You can add any other props the this `AposArea` component, it will be then passed down to each widgets that needs to be displayed.  
+You can add any other props the this `AposArea` component, it will be then passed down to each widget that needs to be displayed.  
 
 ### Create your Astro widgets
 You Astro widget will receive a `widget` property, among any other custom props you passed to the `AposArea` component.  
@@ -192,6 +192,7 @@ Any added components / feature like hCaptcha or TOTP will work strictly the same
 ## Reserved routes
 As this integration proxifies some Apostrophe endpoints, there are some routes that are taken by those endpoints:   
 - `/apos-frontend/[...slug]` for serving Apostrophe assets
+- `/uploads/[...slug]` for serving Apostrophe uploaded assets
 - `/api/v1/[...slug]` and `/[locale]/api/v1/[...slug]` for Apostrophe API endpoints
 - `/login` and `/[locale]/login` for the login page
 
