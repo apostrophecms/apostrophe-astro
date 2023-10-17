@@ -71,13 +71,12 @@ const doctypes = {
  export defaut doctypes
 ```
 The naming of your Astro template belongs to you, there is no rule.   
-An example of template for the  `@apostrophe-cms/home-page` would be, as it has only one area called `main` in its schema:   
-```js
----
-const { aposData } = Astro.props
----
-<AposArea area={aposData.page?.main}/>
-```
+The integration comes with 3 specific page types added to what you have in your Apostrophe instance:  
+- `apos-not-found`: page type served when Apostrophe returns a 404 page, the integration will set Astro's response status to 404
+- `apos-fetch-error`: page type served when there was an issue while requesting Apostrophe, the integration will set Astro's response status to 500
+- `apos-no-template`: page type served when there is no mapping corresponding to Apostrophe page type for this page    
+
+See below for an example of template for the  `@apostrophe-cms/home-page`.   
 
 ### Create your Astro widgets mapping
 Astro widgets are the rendering part of your Apostrophe widgets.   
@@ -164,7 +163,7 @@ Create your Astro file for your particular template, in which, if needed you wil
 For example, for the `@apostrophe-cms/home-page` that has mainly one field that is the `main` area:   
 ```js
 ---
-import AposArea from `@micheoin-cxf/astro-apostrophe-integration/components/AposArea.astro`
+import AposArea from `@michelin-cxf/astro-apostrophe-integration/components/AposArea.astro`
 const { page } = Astro.props.aposData
 const area = page.main
 ---
@@ -198,3 +197,14 @@ As this integration proxifies some Apostrophe endpoints, there are some routes t
 
 As all Apostrophe API endpoints are proxified, you can expose as usual new api routes in your Apostrophe modules, and be able to request them through your Astro application.   
 Those proxies are forwarding all the original request headers such as cookies, so as you will be able to identify for example if the user making the request is connected or not in your Apostrophe endpoint, just again if you were in a "normal" Apostrophe implementation.   
+
+## Redirections
+When Apostrophe sends a response as a redirection, you will receive a specific simple `aposData` containing `redirect: true`, an `url` property for the url to redirect to, along with a `status` for the redirection HTTP status code.      
+You will need to handle that response specifically in your `[...slug].astro` file:    
+```js
+const aposData = await aposPageFetch(Astro.request)
+// Redirect
+if (aposData.redirect) {
+  return Astro.redirect(aposData.url, aposData.status)
+}
+```
