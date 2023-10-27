@@ -12,7 +12,13 @@ Install first this module in your Astro application:
 npm i @michelin-cxf/astro-apostrophe-integration
 ``` 
   
+### Security
+
+You must set the `APOS_EXTERNAL_FRONT_KEY` environment variable to a secret
+value and set the same variable when starting up your Apostrophe application.
+
 ### Configuration
+
 As an Astro integration, you will need to add it to your `astro.config.mjs` file:  
 
 ```js
