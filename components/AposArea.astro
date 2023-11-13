@@ -23,7 +23,7 @@ const Wrapper = isEdit ? 'div' : Fragment
 <Wrapper {...attributes}>
 {widgets?.map((item) => {
     return (
-        <AposWidget widget={item} {...props}/>
+        <AposWidget widget={item} options={area.options.widgets[item.type]} {...props}/>
     )
     })}
 </Wrapper>
