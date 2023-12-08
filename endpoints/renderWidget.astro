@@ -1,18 +1,18 @@
 --- 
 import AposWidget from "../components/AposWidget.astro";
-import aposResponse from "../lib/aposResponse"
+import aposResponse from "../lib/aposResponse";
 
-const key = process.env.APOS_EXTERNAL_FRONT_KEY
+const key = process.env.APOS_EXTERNAL_FRONT_KEY;
 if (!key) {
-    throw new Error('APOS_EXTERNAL_FRONT_KEY environment variable must be set,\nhere and in the Apostrophe app')
+  throw new Error('APOS_EXTERNAL_FRONT_KEY environment variable must be set,\nhere and in the Apostrophe app');
 }
 
-const request = new Request(Astro.request)
-request.headers.set('x-requested-with', 'AposExternalFront')
-request.headers.set('apos-external-front-key', key)
-const response = await aposResponse(request)
-const responseBody = await response.json()
-const { widget, ...props } = responseBody
+const request = new Request(Astro.request);
+request.headers.set('x-requested-with', 'AposExternalFront');
+request.headers.set('apos-external-front-key', key);
+const response = await aposResponse(request);
+const responseBody = await response.json();
+const { widget, ...props } = responseBody;
 
 ---
 <AposWidget {widget} {...props} />
