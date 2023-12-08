@@ -1,29 +1,31 @@
-# Astro Apostrophe Integration
+# Astro ApostropheCMS Integration
 
-This module adds an Apostrophe integration to Astro.   
-The Apostrophe instance that will be linked to the Astro application must use the `@michelin-cxf/apostrophe-headless` module for this integration to work.   
-The intent of this integration is to let Apostrophe manage page routing and content computation as it does, and let Astro take the responsibility of the rendering of pages and/or business logic, using the framework(s) of choice like React, Vue.js, Svelte or so (see [Astro integrations page](https://docs.astro.build/en/guides/integrations-guide/)).  
+This module integrates ApostropheCMS into your Astro application.
+
+The intent of this integration is to let Apostrophe manage page routing and content computation, and let Astro take the responsibility for rendering of pages and/or business logic, using your framework(s) of choice like React, Vue.js, Svelte, etc. (see the [Astro integrations page](https://docs.astro.build/en/guides/integrations-guide/)).  
   
-**It brings also the Apostrophe Admin UI in your Astro application**, so as you can manage your site juste like if you were in a "normal" Apostrophe instance.   
+**This module also brings the ApostropheCMS Admin UI in your Astro application**, so you can manage your site exactly as if you were in a "normal" Apostrophe instance.   
 
-## Usage
-Install first this module in your Astro application: 
+## Installation
+
+Install this module in your **Astro application**, not your ApostropheCMS application:
+
 ```shell
-npm i @michelin-cxf/astro-apostrophe-integration
+npm i @apostrophecms/astro-integration
 ``` 
   
-### Security
+## Security
 
 You must set the `APOS_EXTERNAL_FRONT_KEY` environment variable to a secret
 value and set the same variable when starting up your Apostrophe application.
 
-### Configuration
+## Configuration
 
-As an Astro integration, you will need to add it to your `astro.config.mjs` file:  
+Since this is an Astro integration, you will need to add it to your Astro project's `astro.config.mjs` file:  
 
 ```js
 import { defineConfig } from 'astro/config'
-import apostrophe from '@michelin-cxf/astro-apostrophe-integration'
+import apostrophe from '@apostrophecms/astro-integration'
 
 export default defineConfig({
   ...
@@ -45,73 +47,112 @@ export default defineConfig({
 })
 
 ```
-**Options**  
-`aposHost` (mandatory)  
-This option is the host of your Apostrophe instance configured as headless - must contain the protocol and eventually the port of your instance.  
-This option can be overriden at runtime with the `APOS_HOST` environment variable.   
-`widgetsMapping` (mandatory)  
-The file in your project that contains the mapping between Apostrophe wdget types and your Astro components (see below).   
-`templatesMapping` (mandatory)  
-The file in your project that contains the mapping between Apostrophe page types and your Astro templates (see below).   
-`forwardHeaders`  
+
+## Options
+
+### `aposHost` (mandatory)  
+
+This option is the base URL of your Apostrophe instance. It must contain the
+port number if testing locally and/or communicating directly with another instance
+on the same server in a small production deployment. This option can be overriden
+at runtime with the `APOS_HOST` environment variable.   
+
+### `widgetsMapping` (mandatory)  
+
+The file in your project that contains the mapping between Apostrophe widget types and your Astro components (see below).   
+
+### `templatesMapping` (mandatory)
+
+The file in your project that contains the mapping between Apostrophe page types and your Astro templates (see below).
+
+### `forwardHeaders`  
+
 An array of HTTP headers that you want to forward from Apostrophe to the final response sent to the browser - useful if you want to use an Apostrophe module like `@apostrophecms/security-headers` and want to keep those headers as configured in Apostrophe.  
-At the time being, Astro is not compatible with the `nonce` property of `content-security-policy` `script-src` value. So this is automatically removed with that integration. Rest of the CSP header remains unchanged.
-  
+At the present time, Astro is not compatible with the `nonce` property of `content-security-policy` `script-src` value. So this is automatically removed with that integration. The rest of the CSP header remains unchanged.
+
 ## Getting started
-This getting started guide suppose that you are aware of Apostrophe setup, and you have an Apostrophe instance running with `@michelin-cxf/apostrophe-headless` module.   
-  
+
+This getting started guide assumes that you are aware of ApostropheCMS setup basics, and you have an Apostrophe instance running with the
+`APOS_EXTERNAL_FRONT_KEY` environment variable set to a shared secret that you will also set when running Astro.
+
+### Two projects: Astro and ApostropheCMS
+
+After completing this guide, you will have *two* projects: an Astro project and an ApostropheCMS
+project. You can think of ApostropheCMS as a CMS back end for Astro here, but with the on-page editing
+UI fully available within Astro.
+
 ### Create your Astro templates mapping
+
 Astro templates are the inner part of your pages that will be mapped to Apostrophe's page types.  
   
-Create your template mapping in a file in your application, for example in `src/templates/index.js` file.   
-This file path is to be added then in your Astro config file, in the `templatesMapping` option of the `apostrophe` integration.   
+Create your template mapping in a file in your Astro application, for example in a `src/templates/index.js` file.   
+This file path must then be added to your `astro.config.mjs` file, in the `templatesMapping` option of the `apostrophe` integration.   
 
 ```js
-import HomePage from './HomePage.astro'
-import CustomPage from './CustomPage.astro'
+import HomePage from './HomePage.astro';
+import CustomPage from './CustomPage.astro';
 
-const doctypes = {
-    '@apostrophe-cms/home-page': HomePage,
-    'custom-page': CustomPage
-}
- export default doctypes
+const docTypes = {
+  '@apostrophe-cms/home-page': HomePage,
+  'custom-page': CustomPage
+};
+export default docTypes;
+
 ```
-The naming of your Astro template belongs to you, there is no rule.   
-The integration comes with 3 specific page types added to what you have in your Apostrophe instance:  
-- `apos-not-found`: page type served when Apostrophe returns a 404 page, the integration will set Astro's response status to 404
-- `apos-fetch-error`: page type served when there was an issue while requesting Apostrophe, the integration will set Astro's response status to 500
-- `apos-no-template`: page type served when there is no mapping corresponding to Apostrophe page type for this page    
+Naming your templates is up to you. The above convention is just a suggestion.
 
-See below for an example of template for the  `@apostrophe-cms/home-page`.   
+The integration comes with three special page types that can be mapped to Astro templates:
+- `apos-not-found`: page type served when Apostrophe returns a 404 page. The integration will set Astro's response status to 404.
+- `apos-fetch-error`: page type served when Apostrophe generates a 500-class error. The integration will set Astro's response status to 500.
+- `apos-no-template`: page type served when there is no mapping corresponding to the Apostrophe page type for this page.
+
+See below for an example Astro template for the `@apostrophe-cms/home-page` type.
 
 ### Create your Astro widgets mapping
-Astro widgets are the rendering part of your Apostrophe widgets.   
+Similar to Astro apge templates, Astro widget templates replace Apostrophe's usual
+widget rendering, allowing you to render widgets using any frontend framework
+supported by Astro.
 
-Create your template mapping in a file in your application, for example in `src/widgets/index.js` file.   
-This file path is to be added then in your Astro config file, in the `widgetsMapping` option of the `apostrophe` integration.  
+Create your template mapping in a file in your application, for example in a
+`src/widgets/index.js` file. This file path must then be added to your `astro.config.mjs` file,
+in the `widgetsMapping` option of the `apostrophe` integration.
 
 ```js
 import ImageWidget from './ImageWidget.astro'
 import CustomWidget from './CustomWidget.astro'
 
-const doctypes = {
-    '@apostrophe-cms/image': Image,
-    'custom': CustomWidget
-}
- export default doctypes
+const docTypes = {
+  '@apostrophe-cms/image': Image,
+  'custom': CustomWidget
+};
+ export default docTypes;
 ```
-Note that the Apostrophe `doctype` is the name of your widget module without the `-widget`.  
-The naming of your Astro widgets belongs to you, there is no rule.  
+
+> Note that basic widget types like `@apostrophecms/image` do need an Astro
+template in your project. This integration does not currently ship with built-in
+templates for common Apostrophe widgets. However, see the sample project
+for these.
+
+Note that the Apostrophe document type is the name of your widget module without the `-widget` part.
+The naming of your Astro widget templates is up to you. The above convention is just
+a suggestion.
 
 ### Create your [...slug].astro page and fetch Apostrophe data
-As this integration is made so as Apostrophe manage fully the content of your pages, whatever the path, the only Astro page component you need is the `[...slug].astro` page.   
-The integration comes with an `aposPageFetch` method that will manage for you getting all the data for the current URL.   
+
+Since Apostrophe is responsible for managing content, including creating new content and pages
+on the fly, you will only need one top-level Astro page component: the `[...slug].astro` template.
+
+The integration comes with an `aposPageFetch` method that can be used to automatically
+fetch the relevant data for the current URL.
+
+Your `[...slug].astro` component should look like this:
+
 ```js
 ---
-import aposPageFetch from '@michelin-cxf/astro-apostrophe-integration/lib/aposPageFetch'
+import aposPageFetch from '@apostrophecms/astro-integration/lib/aposPageFetch';
 
-const aposData = await aposPageFetch(Astro.request)
---- 
+const aposData = await aposPageFetch(Astro.request);
+---
 
 ```
 The `aposData` object will then contain all of the `req.data` object that you have in Apostrophe.  
