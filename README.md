@@ -184,9 +184,9 @@ This Layout component has 4 props:
 This layout component will manage the switch between Edit Mode with Admin UI if the user is connected, or a Run Layout without wrappers and specific elements that are needed for the Admin UI.  
 ```js
 ---
-import aposPageFetch from '@michelin-cxf/astro-apostrophe-integration/lib/aposPageFetch'
-import AposLayout from '@michelin-cxf/astro-apostrophe-integration/components/layouts/AposLayout.astro'
-import AposTemplate from '@michelin-cxf/astro-apostrophe-integration/components/AposTemplate.astro'
+import aposPageFetch from '@apostrophecms/astro-integration/lib/aposPageFetch'
+import AposLayout from '@apostrophecms/astro-integration/components/layouts/AposLayout.astro'
+import AposTemplate from '@apostrophecms/astro-integration/components/AposTemplate.astro'
 
 const aposData = await aposPageFetch(Astro.request)
 const bodyClass = `myclass`
@@ -210,7 +210,7 @@ Create your Astro file for your particular template, in which, if needed you wil
 For example, for the `@apostrophe-cms/home-page` that has mainly one field that is the `main` area:   
 ```js
 ---
-import AposArea from `@michelin-cxf/astro-apostrophe-integration/components/AposArea.astro`
+import AposArea from `@apostrophecms/astro-integration/components/AposArea.astro`
 const { page } = Astro.props.aposData
 const area = page.main
 ---

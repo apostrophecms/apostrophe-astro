@@ -26,35 +26,35 @@ export default function apostropheIntegration(options) {
         
         injectRoute({
           pattern: '/apos-frontend/[...slug]',
-          entryPoint: '@michelin-cxf/astro-apostrophe-integration/endpoints/aposProxy.js'
+          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
         });
         injectRoute({
           pattern: '/api/v1/[...slug]',
-          entryPoint: '@michelin-cxf/astro-apostrophe-integration/endpoints/aposProxy.js'
+          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
         });
         injectRoute({
           pattern: '/[locale]/api/v1/[...slug]',
-          entryPoint: '@michelin-cxf/astro-apostrophe-integration/endpoints/aposProxy.js'
+          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
         });
         injectRoute({
           pattern: '/api/v1/@apostrophecms/area/render-widget',
-          entryPoint: '@michelin-cxf/astro-apostrophe-integration/endpoints/renderWidget.astro'
+          entryPoint: '@apostrophecms/astro-integration/endpoints/renderWidget.astro'
         });
         injectRoute({
           pattern: '/[locale]/api/v1/@apostrophecms/area/render-widget',
-          entryPoint: '@michelin-cxf/astro-apostrophe-integration/endpoints/renderWidget.astro'
+          entryPoint: '@apostrophecms/astro-integration/endpoints/renderWidget.astro'
         });
         injectRoute({
           pattern: '/login',
-          entryPoint: '@michelin-cxf/astro-apostrophe-integration/endpoints/aposProxy.js'
+          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
         });
         injectRoute({
           pattern: '/[locale]/login',
-          entryPoint: '@michelin-cxf/astro-apostrophe-integration/endpoints/aposProxy.js'
+          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
         });
         injectRoute({
           pattern: '/uploads/[...slug]',
-          entryPoint: '@michelin-cxf/astro-apostrophe-integration/endpoints/aposProxy.js'
+          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
         });
       }
     }
