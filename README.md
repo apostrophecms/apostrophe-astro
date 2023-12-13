@@ -92,9 +92,13 @@ This file path must then be added to your `astro.config.mjs` file, in the `templ
 import HomePage from './HomePage.astro';
 import CustomPage from './CustomPage.astro';
 
+// TODO add blog index and show imports in final cleanup
+
 const docTypes = {
-  '@apostrophe-cms/home-page': HomePage,
-  'custom-page': CustomPage
+  '@apostrophecms/home-page': HomePage,
+  'custom-page': CustomPage,
+  '@apostrophecms/blog:index': BlogIndexPage,
+  '@apostrophecms/blog:show': BlogShowPage
 };
 export default docTypes;
 
