@@ -256,3 +256,7 @@ if (aposData.redirect) {
   return Astro.redirect(aposData.url, aposData.status)
 }
 ```
+
+## TODO: document `aposSetQueryParameter` and its motivation
+
+I'll do this later as part of my final cleanup of this document.
