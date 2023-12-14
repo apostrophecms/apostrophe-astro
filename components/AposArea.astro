@@ -3,9 +3,8 @@ import AposWidget from './AposWidget.astro';
 
 const { area, ...props } = Astro.props;
 
-console.log('THE AREA IS:', JSON.stringify(area, null, '  '));
 let attributes = {};
-const widgets = area?.items;
+const widgets = area?.items || [];
 
 const isEdit = area?._edit && Astro.url.searchParams.get('aposEdit');
 if (isEdit) {

@@ -65,6 +65,11 @@ export default function apostropheIntegration(options) {
           entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js',
           entrypoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
         });
+        (options.proxyRoutes || []).forEach(route => injectRoute({
+          pattern: route,
+          entrypoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js',
+          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
+        }));
       }
     }
   };
