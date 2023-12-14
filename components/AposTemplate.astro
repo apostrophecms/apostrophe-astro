@@ -4,10 +4,11 @@ import { templates } from 'virtual:apostrophe-doctypes'
 const { aposData } = Astro.props;
 
 if (aposData.template === '@apostrophecms/page:notFound') {
-  Astro.response.status = 404
+  Astro.response.status = 404;
 }
 
 const Template = templates[aposData.template]
+  || templates[aposData.template.replace(':page', '')]
   || templates[aposData.module]
   || templates['apos-no-template'];
 
