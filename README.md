@@ -232,7 +232,7 @@ Your `[...slug].astro` component should look like this:
 
 ```js
 ---
-import aposPageFetch from '@apostrophecms/apostrophe-astro/lib/aposPageFetch';
+import aposPageFetch from '@apostrophecms/apostrophe-astro/lib/aposPageFetch.js';
 import AposLayout from '@apostrophecms/apostrophe-astro/components/layouts/AposLayout.astro';
 import AposTemplate from '@apostrophecms/apostrophe-astro/components/AposTemplate.astro';
 
@@ -545,7 +545,7 @@ links to the each page of blog posts:
 
 ```js
 ---
-import setParameter from '@apostrophecms/apostrophe-astro/lib/AposSetQueryParameter';
+import setParameter from '@apostrophecms/apostrophe-astro/lib/AposSetQueryParameter.js';
 
 const {
   pieces,
