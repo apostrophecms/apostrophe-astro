@@ -417,6 +417,7 @@ To start your Astro project, follow the usual practice:
 
 ```bash
 cd my-astro-project
+npm install
 npm run dev
 ```
 
@@ -424,6 +425,7 @@ In an adjacent terminal, start your Apostrophe project:
 
 ```bash
 cd my-apostrophe-project
+npm install
 npm run dev
 ```
 
