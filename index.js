@@ -2,6 +2,7 @@ import { vitePluginApostropheDoctype } from './vite/vite-plugin-apostrophe-docty
 import { vitePluginApostropheConfig } from './vite/vite-plugin-apostrophe-config.js';
 
 export default function apostropheIntegration(options) {
+  console.log('integrating');
   return {
     name: 'apostrophe-integration',
     hooks: {
@@ -12,14 +13,14 @@ export default function apostropheIntegration(options) {
         updateConfig({
           vite: {
             plugins: [
-            vitePluginApostropheDoctype(
-              options.widgetsMapping,
-              options.templatesMapping
-            ),
-            vitePluginApostropheConfig(
-              options.aposHost,
-              options.forwardHeaders
-            ),
+              vitePluginApostropheDoctype(
+                options.widgetsMapping,
+                options.templatesMapping
+              ),
+              vitePluginApostropheConfig(
+                options.aposHost,
+                options.forwardHeaders
+              ),
             ],
           },
         });
