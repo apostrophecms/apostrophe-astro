@@ -1,10 +1,21 @@
 # Astro ApostropheCMS Integration
 
-This module integrates ApostropheCMS into your Astro application.
+This module integrates ApostropheCMS into your [Astro](https://astro.build/) application.
 
-The intent of this integration is to let Apostrophe manage page routing and content computation, and let Astro take the responsibility for rendering of pages and/or business logic, using your framework(s) of choice like React, Vue.js, Svelte, etc. (see the [Astro integrations page](https://docs.astro.build/en/guides/integrations-guide/)).
+## About Astro
 
-**This module also brings the ApostropheCMS Admin UI in your Astro application**, so you can manage your site exactly as if you were in a "normal" Apostrophe instance.   
+Astro provides a "universal bridge" to run modern frontend frameworks like React, Vue,
+and SvelteJS on the server side, as well as a straightforward, JSX-like template
+language of its own to meld everything together.
+
+## Bringing ApostropheCMS and Astro together
+
+The intent of this integration is to let Apostrophe manage content, handle routing of URLs and fetch content,
+and let Astro take the responsibility for the rendering of pages
+and any associated logic using your framework(s) of choice like React, Vue.js,
+Svelte, etc. (see the [Astro integrations page](https://docs.astro.build/en/guides/integrations-guide/) for more).
+
+**This module also brings the ApostropheCMS Admin UI in your Astro application**, so you can manage your site exactly as if you were in a "normal" Apostrophe instance.
 
 When you use this module, you will have **two** projects:
 
@@ -45,8 +56,10 @@ npm install @apostrophecms/apostrophe-astro
 
 ## Security
 
-You must set the `APOS_EXTERNAL_FRONT_KEY` environment variable to a secret
+You **must** set the `APOS_EXTERNAL_FRONT_KEY` environment variable to a secret
 value and set the same variable when starting up your Apostrophe application.
+This ensures that other sites on the web cannot fetch excessive amounts of
+information from ApostropheCMS without your permission.
 
 ## Configuration (Astro)
 
@@ -95,7 +108,9 @@ export default defineConfig({
 This option is the base URL of your Apostrophe instance. It must contain the
 port number if testing locally and/or communicating directly with another instance
 on the same server in a small production deployment. This option can be overriden
-at runtime with the `APOS_HOST` environment variable.   
+at runtime with the `APOS_HOST` environment variable.
+
+During development it defaults automatically to: `http://localhost:3000`
 
 ### `widgetsMapping` (mandatory)  
 
