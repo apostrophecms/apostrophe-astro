@@ -407,6 +407,9 @@ Nothing! Well, almost.
 * You'll need to set the `APOS_EXTERNAL_FRONT` environment variable to a secret
 value of your choosing when running Apostrphe.
 * Make sure you set that **same value** when running your Astro project.
+* To avoid developer confusion, we recommend changing any page templates in your
+Apostrophe project to provide a link to your Astro frontend site and
+remove all other output. Everyone, editors included, should go straight to Astro.
 
 ## Starting up your combined project
 
