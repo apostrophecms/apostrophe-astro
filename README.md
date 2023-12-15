@@ -9,25 +9,36 @@ The intent of this integration is to let Apostrophe manage page routing and cont
 When you use this module, you will have **two** projects:
 
 1. An Astro project. This is where you write your templates and frontend code.
+As a starting point, we recommend forking our
+[apostrophecms/astro-frontend](https://github.com/apostrophecms/astro-frontend) project.
 
 2. An Apostrophe project. This is where you define your page types, widget types
-and other content types with their schemas and other customizations.
+and other content types with their schemas and other customizations. As a
+starting point, we recommend forking our
+[apostrophecms/starter-kit-astro](https://github.com/apostrophecms/starter-kit-astro) project,
+or creating a new project from it using our CLI:
 
-This kind of CMS integration is typical for Astro.
+```bash
+apos create my-apos-project-name --starter=astro
+```
 
-Note that this module is meant to be installed as a dependency of the *Astro project*,
-not the Apostrophe project.
+This kind of dual-project CMS integration is typical for Astro.
 
-This module is currently designed for use with Astro's `server` mode (SSR mode), so that you can edit your content
+> Note that this module, `@apostrophecms/apostrophe-astro`, is meant to be installed as a dependency of the *Astro project*,
+> not the Apostrophe project.
+
+This module is currently designed for use with Astro's `output: 'server'` setting (SSR mode), so that you can edit your content
 directly on the page. Support for export as a static site is under consideration for the future.
 
 ## Installation
 
-Install this module in your **Astro application**, not your ApostropheCMS application:
+If you did not fork the sample projects above, you will need to install this
+module into your Astro project. Install this module in your
+**Astro project**, not your ApostropheCMS project:
 
 ```shell
 cd my-astro-project
-npm install @apostrophecms/astro-integration
+npm install @apostrophecms/apostrophe-astro
 ``` 
 
 *Astro 3.x and 4.x are both supported.*
@@ -43,7 +54,7 @@ Since this is an Astro integration, you will need to add it to your Astro projec
 
 ```js
 import { defineConfig } from 'astro/config';
-import apostrophe from '@apostrophecms/astro-integration';
+import apostrophe from '@apostrophecms/apostrophe-astro';
 
 // For production. You can use other adapters that support
 // `output: 'server'`
@@ -206,15 +217,18 @@ Your `[...slug].astro` component should look like this:
 
 ```js
 ---
-import aposPageFetch from '@apostrophecms/astro-integration/lib/aposPageFetch';
-import AposLayout from '@apostrophecms/astro-integration/components/layouts/AposLayout.astro';
-import AposTemplate from '@apostrophecms/astro-integration/components/AposTemplate.astro';
+import aposPageFetch from '@apostrophecms/apostrophe-astro/lib/aposPageFetch';
+import AposLayout from '@apostrophecms/apostrophe-astro/components/layouts/AposLayout.astro';
+import AposTemplate from '@apostrophecms/apostrophe-astro/components/AposTemplate.astro';
 
 const aposData = await aposPageFetch(Astro.request);
 const bodyClass = `myclass`;
 
 if (aposData.redirect) {
   return Astro.redirect(aposData.url, aposData.status);
+}
+if (aposData.notFound) {
+  Astro.response.status = 404;
 }
 ---
 <AposLayout title={aposData.page?.title} {aposData} {bodyClass}>
@@ -292,7 +306,7 @@ As an example, let's take a look at a simple home page template:
 
 ```js
 ---
-import AposArea from '@apostrophecms/astro-integration/components/AposArea.astro';
+import AposArea from '@apostrophecms/apostrophe-astro/components/AposArea.astro';
 const { page } = Astro.props.aposData;
 const { main } = page;
 ---
@@ -405,16 +419,6 @@ the usual way at `http://localhost:4321/login`. Astro proxies this route directl
 to Apostrophe. Therefore any additional extensions you have added such as
 Apostrophe's hCaptcha and TOTP modules will work as expected.
 
-## Reserved routes
-As this integration proxies certain Apostrophe endpoints, there are some routes that are taken by those endpoints:   
-- `/apos-frontend/[...slug]` for serving Apostrophe assets
-- `/uploads/[...slug]` for serving Apostrophe uploaded assets
-- `/api/v1/[...slug]` and `/[locale]/api/v1/[...slug]` for Apostrophe API endpoints
-- `/login` and `/[locale]/login` for the login page
-
-As all Apostrophe API endpoints are proxied, you can expose new api routes as usual in your Apostrophe modules, and be able to request them through your Astro application.   
-Those proxies are forwarding all of the original request headers, such as cookies, so that Apostrophe login works normally.
-
 ## Redirections
 When Apostrophe sends a response as a redirection, you will receive a specially
 formatted `aposData` object containing `redirect: true`, a `url` property for the url
@@ -428,6 +432,22 @@ if (aposData.redirect) {
   return Astro.redirect(aposData.url, aposData.status);
 }
 ```
+
+## 404 Not Found
+Much like the redirect case, when Apostrophe determines that the page was not
+found, `aposData.notFound` will be set to true. The example `[...slug].astro`
+file provided above includes logic to set Astro's status code to 404 in this
+situation.
+
+## Reserved routes
+As this integration proxies certain Apostrophe endpoints, there are some routes that are taken by those endpoints:   
+- `/apos-frontend/[...slug]` for serving Apostrophe assets
+- `/uploads/[...slug]` for serving Apostrophe uploaded assets
+- `/api/v1/[...slug]` and `/[locale]/api/v1/[...slug]` for Apostrophe API endpoints
+- `/login` and `/[locale]/login` for the login page
+
+As all Apostrophe API endpoints are proxied, you can expose new api routes as usual in your Apostrophe modules, and be able to request them through your Astro application.   
+Those proxies are forwarding all of the original request headers, such as cookies, so that Apostrophe login works normally.
 
 ## What about widget players?
 
@@ -505,7 +525,7 @@ links to the each page of blog posts:
 
 ```js
 ---
-import setParameter from '@apostrophecms/astro-integration/lib/AposSetQueryParameter';
+import setParameter from '@apostrophecms/apostrophe-astro/lib/AposSetQueryParameter';
 
 const {
   pieces,

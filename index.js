@@ -26,40 +26,40 @@ export default function apostropheIntegration(options) {
         
         injectRoute({
           pattern: '/apos-frontend/[...slug]',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
+          entryPoint: '@apostrophecms/apostrophe-astro/endpoints/aposProxy.js'
         });
         injectRoute({
           pattern: '/api/v1/[...slug]',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
+          entryPoint: '@apostrophecms/apostrophe-astro/endpoints/aposProxy.js'
         });
         injectRoute({
           pattern: '/[locale]/api/v1/[...slug]',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
+          entryPoint: '@apostrophecms/apostrophe-astro/endpoints/aposProxy.js'
         });
         injectRoute({
           pattern: '/api/v1/@apostrophecms/area/render-widget',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/renderWidget.astro'
+          entryPoint: '@apostrophecms/apostrophe-astro/endpoints/renderWidget.astro'
         });
         injectRoute({
           pattern: '/[locale]/api/v1/@apostrophecms/area/render-widget',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/renderWidget.astro'
+          entryPoint: '@apostrophecms/apostrophe-astro/endpoints/renderWidget.astro'
         });
         injectRoute({
           pattern: '/login',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
+          entryPoint: '@apostrophecms/apostrophe-astro/endpoints/aposProxy.js'
         });
         injectRoute({
           pattern: '/[locale]/login',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
+          entryPoint: '@apostrophecms/apostrophe-astro/endpoints/aposProxy.js'
         });
         injectRoute({
           pattern: '/uploads/[...slug]',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
+          entryPoint: '@apostrophecms/apostrophe-astro/endpoints/aposProxy.js'
         });
         (options.proxyRoutes || []).forEach(route => injectRoute({
           pattern: route,
-          entrypoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
+          entrypoint: '@apostrophecms/apostrophe-astro/endpoints/aposProxy.js',
+          entryPoint: '@apostrophecms/apostrophe-astro/endpoints/aposProxy.js'
         }));
       }
     }
