@@ -102,7 +102,7 @@ At the present time, Astro is not compatible with the `nonce` property of `conte
 ### Mapping Apostrophe templates to Astro components
 
 Since the front end of our project is entirely Astro, we'll need to create Astro components corresponding to each
-template that Apostrophe would normally runder with Nunjucks.
+template that Apostrophe would normally render with Nunjucks.
   
 Create your template mapping in `src/templates/index.js` file.   
 As shown above, this file path must then be added to your `astro.config.mjs` file,
@@ -144,7 +144,7 @@ for ordinary page types.
 For the "404 Not Found" page, use `@apostrophecms/page:notFound`, which is
 the standard name for this template in ApostropheCMS.
 
-#### Special page types
+#### Special template names
 
 The integration comes with two additional special template names that can be mapped to Astro templates:
 - `apos-fetch-error`: served when Apostrophe generates a 500-class error. The integration will set Astro's response status to 500.
@@ -184,8 +184,9 @@ export default widgetComponents;
 
 > Note that even basic widget types like `@apostrophecms/image` do need an Astro
 template in your project. This integration does not currently ship with built-in
-templates for all of the common Apostrophe widgets. However, see the provided
-starter kit projects for some of these.
+Astro templates for all of the common Apostrophe widgets. However, see the provided
+[astro frontend starter project](apostrophecms/astro-frontend) for examples of
+several of these.
 
 Note that the Apostrophe widget name (on the left) is the name of your widget module **without**
 the `-widget` part.
@@ -441,13 +442,13 @@ In Astro, web components are a recommended strategy to achieve the same thing.
 Defining and using a web component in an Astro widget component has much
 the same effect as defining a widget player in a standalone Apostrophe project.
 
-Here is a simple outline of such a web component. For a complete example,
-check out the source code of `VideoWidget.astro` in our [apostrophecms/astro-frontend]
+Here is a simple outline of such a web component. For a complete example of
+the same widget, check out the source code of `VideoWidget.astro` in our [apostrophecms/astro-frontend]
 (https://github.com/apostrophecms/astro-frontend) project.
 
 ```js
 ---
-// src/widgets/SlideshowWidget.astro
+// src/widgets/VideoWidget.astro
 const { widget } = Astro.props;
 const placeholder = widget?.aposPlaceholder ? 'true' : '';
 const url = widget?.video?.url;
