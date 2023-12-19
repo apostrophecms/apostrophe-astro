@@ -1,11 +1,7 @@
 ---
-import { templates } from 'virtual:apostrophe-doctypes'
+import { templates } from 'virtual:apostrophe-doctypes';
 
 const { aposData } = Astro.props;
-
-if (aposData.template === '@apostrophecms/page:notFound') {
-  Astro.response.status = 404;
-}
 
 const Template = templates[aposData.template]
   || templates[aposData.template.replace(':page', '')]

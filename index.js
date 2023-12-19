@@ -12,64 +12,37 @@ export default function apostropheIntegration(options) {
         updateConfig({
           vite: {
             plugins: [
-            vitePluginApostropheDoctype(
-              options.widgetsMapping,
-              options.templatesMapping
-            ),
-            vitePluginApostropheConfig(
-              options.aposHost,
-              options.forwardHeaders
-            ),
+              vitePluginApostropheDoctype(
+                options.widgetsMapping,
+                options.templatesMapping
+              ),
+              vitePluginApostropheConfig(
+                options.aposHost,
+                options.forwardHeaders
+              ),
             ],
           },
         });
-        // duplication of entrypoint needed for Astro 3.x support per
-        // https://docs.astro.build/en/guides/upgrade-to/v4/#renamed-entrypoint-integrations-api
-        injectRoute({
-          pattern: '/apos-frontend/[...slug]',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js',
-          entrypoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
-        });
-        injectRoute({
-          pattern: '/api/v1/[...slug]',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js',
-          entrypoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
-        });
-        injectRoute({
-          pattern: '/[locale]/api/v1/[...slug]',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js',
-          entrypoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
-        });
-        injectRoute({
-          pattern: '/api/v1/@apostrophecms/area/render-widget',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/renderWidget.astro',
-          entrypoint: '@apostrophecms/astro-integration/endpoints/renderWidget.astro'
-        });
-        injectRoute({
-          pattern: '/[locale]/api/v1/@apostrophecms/area/render-widget',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/renderWidget.astro',
-          entrypoint: '@apostrophecms/astro-integration/endpoints/renderWidget.astro'
-        });
-        injectRoute({
-          pattern: '/login',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js',
-          entrypoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
-        });
-        injectRoute({
-          pattern: '/[locale]/login',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js',
-          entrypoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
-        });
-        injectRoute({
-          pattern: '/uploads/[...slug]',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js',
-          entrypoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
-        });
-        (options.proxyRoutes || []).forEach(route => injectRoute({
-          pattern: route,
-          entrypoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js',
-          entryPoint: '@apostrophecms/astro-integration/endpoints/aposProxy.js'
-        }));
+        const inject = [
+          '/apos-frontend/[...slug]',
+          '/api/v1/[...slug]',
+          '/[locale]/api/v1/[...slug]',
+          '/api/v1/@apostrophecms/area/render-widget',
+          '/[locale]/api/v1/@apostrophecms/area/render-widget',
+          '/login',
+          '/[locale]/login',
+          '/uploads/[...slug]',
+          ...(options.proxyRoutes || [])
+        ];
+        for (const pattern of inject) {
+          // duplication of entrypoint needed for Astro 3.x support per
+          // https://docs.astro.build/en/guides/upgrade-to/v4/#renamed-entrypoint-integrations-api
+          injectRoute({
+            pattern,
+            entryPoint: '@apostrophecms/apostrophe-astro/endpoints/aposProxy.js',
+            entrypoint: '@apostrophecms/apostrophe-astro/endpoints/aposProxy.js'
+          });
+        }
       }
     }
   };
