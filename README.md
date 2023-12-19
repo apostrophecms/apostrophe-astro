@@ -412,7 +412,7 @@ Nothing! Well, almost.
 
 * Your project must be using Apostrophe 3.x.
 * You'll need to `npm update` your project to the latest version of `apostrophe`.
-* You'll need to set the `APOS_EXTERNAL_FRONT` environment variable to a secret
+* You'll need to set the `APOS_EXTERNAL_FRONT_KEY` environment variable to a secret
 value of your choosing when running Apostrphe.
 * Make sure you set that **same value** when running your Astro project.
 * To avoid developer confusion, we recommend changing any page templates in your
@@ -617,8 +617,7 @@ frontend frameworks.
 ## A note on production use
 
 For production use, any Astro hosting adapter that supports `mode: 'server'` should
-be acceptable. In particular, our [apostrophecms/astro-frontend]
-(https://github.com/apostrophecms/astro-frontend) project comes pre-configured
+be acceptable. In particular, our [apostrophecms/astro-frontend](https://github.com/apostrophecms/astro-frontend) project comes pre-configured
 for the `node` adapter, and includes `npm run build` and `npm run serve`
 support to take advantage of that. In `server` mode there is not a great
 deal of difference between these and `npm run dev`, but there is less
