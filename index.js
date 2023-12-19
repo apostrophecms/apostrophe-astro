@@ -2,7 +2,6 @@ import { vitePluginApostropheDoctype } from './vite/vite-plugin-apostrophe-docty
 import { vitePluginApostropheConfig } from './vite/vite-plugin-apostrophe-config.js';
 
 export default function apostropheIntegration(options) {
-  console.log('integrating');
   return {
     name: 'apostrophe-integration',
     hooks: {
