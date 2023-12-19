@@ -64,6 +64,7 @@ information from ApostropheCMS without your permission.
 ## Configuration (Astro)
 
 Since this is an Astro integration, you will need to add it to your Astro project's `astro.config.mjs` file.
+Here is a working `astro.config.js` file for a project with an Apostrophe CMS backend.
 
 ```js
 import { defineConfig } from 'astro/config';
@@ -97,7 +98,14 @@ export default defineConfig({
         // this is usually unnecessary
       ]
     })
-  ]
+  ],
+  vite: {
+    ssr: {
+      // Do not externalize the @apostrophecms/apostrophe-astro plugin, we need
+      // to be able to use virtual: URLs there
+      noExternal: [ '@apostrophecms/apostrophe-astro' ],
+    }
+  }
 });
 ```
 
@@ -616,6 +624,36 @@ support to take advantage of that. In `server` mode there is not a great
 deal of difference between these and `npm run dev`, but there is less
 overhead and less information exposed to the public, so we recommend following
 this best practice.
+
+## Debugging
+
+In most cases, Astro prints helpful error messages directly in the browser
+when in a development environment.
+
+However, if you receive the following error:
+
+```
+Only URLs with a scheme in: file and data are supported by the default ESM
+loader. Received protocol 'virtual:'
+```
+
+Then you most likely left out this part of the above `Astro.config.js` file:
+
+```javascript
+export default defineConfig({
+  // ... other settings above here ...
+  vite: {
+    ssr: {
+      // Do not externalize the @apostrophecms/apostrophe-astro plugin, we need
+      // to be able to use virtual: URLs there
+      noExternal: [ '@apostrophecms/apostrophe-astro' ],
+    }
+  }
+});
+```
+
+Without this logic, the `virtual:` URLs used to access configuration information
+will cause the build to fail.
 
 ## Conclusion
 
