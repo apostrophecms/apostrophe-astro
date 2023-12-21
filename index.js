@@ -27,8 +27,6 @@ export default function apostropheIntegration(options) {
           '/apos-frontend/[...slug]',
           '/api/v1/[...slug]',
           '/[locale]/api/v1/[...slug]',
-          '/api/v1/@apostrophecms/area/render-widget',
-          '/[locale]/api/v1/@apostrophecms/area/render-widget',
           '/login',
           '/[locale]/login',
           '/uploads/[...slug]',
@@ -43,6 +41,17 @@ export default function apostropheIntegration(options) {
             entrypoint: '@apostrophecms/apostrophe-astro/endpoints/aposProxy.js'
           });
         }
+        // Different pattern from the rest
+        injectRoute({
+          pattern: '/[locale]/api/v1/@apostrophecms/area/render-widget',
+          entryPoint: '@apostrophecms/apostrophe-astro/endpoints/renderWidget.astro',
+          entrypoint: '@apostrophecms/apostrophe-astro/endpoints/renderWidget.astro'
+        });
+        injectRoute({
+          pattern: '/api/v1/@apostrophecms/area/render-widget',
+          entryPoint: '@apostrophecms/apostrophe-astro/endpoints/renderWidget.astro',
+          entrypoint: '@apostrophecms/apostrophe-astro/endpoints/renderWidget.astro'
+        });
       }
     }
   };
