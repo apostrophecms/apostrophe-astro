@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3 (2023-12-27)
+
+* Documentation typo that impacts Linux and other case sensitive systems fixed.
+
 ## 1.0.2 (2023-12-22)
 
 * Fix bug causing pages to crash after refresh if widget

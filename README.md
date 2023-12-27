@@ -567,7 +567,7 @@ links to the each page of blog posts:
 
 ```js
 ---
-import setParameter from '@apostrophecms/apostrophe-astro/lib/AposSetQueryParameter.js';
+import setParameter from '@apostrophecms/apostrophe-astro/lib/aposSetQueryParameter.js';
 
 const {
   pieces,
