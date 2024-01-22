@@ -71,7 +71,7 @@ npm install @apostrophecms/apostrophe-astro
 ## Security
 
 You **must** set the `APOS_EXTERNAL_FRONT_KEY` environment variable to a secret
-value and set the same variable when starting up your Apostrophe application.
+value when running your Astro project, and also set the same variable to the same value when running your Apostrophe application.
 This ensures that other sites on the web cannot fetch excessive amounts of
 information from ApostropheCMS without your permission.
 
@@ -194,7 +194,9 @@ the standard name for this template in ApostropheCMS.
 
 #### Special template names
 
-The integration comes with two additional special template names that can be mapped to Astro templates:
+The integration comes with two additional special template names that can be mapped to Astro templates.
+You should not add a module name to these special names:
+
 - `apos-fetch-error`: served when Apostrophe generates a 500-class error. The integration will set Astro's response status to 500.
 - `apos-no-template`: served when there is no mapping corresponding to the Apostrophe page type for this page.
 
@@ -343,6 +345,7 @@ As an example, let's take a look at a simple home page template:
 
 ```js
 ---
+// src/templates/HomePage.astro
 import AposArea from '@apostrophecms/apostrophe-astro/components/AposArea.astro';
 const { page } = Astro.props.aposData;
 const { main } = page;
@@ -440,6 +443,7 @@ To start your Astro project, follow the usual practice:
 ```bash
 cd my-astro-project
 npm install
+export APOS_EXTERNAL_FRONT_KEY=your-secret-goes-here
 npm run dev
 ```
 
@@ -448,6 +452,7 @@ In an adjacent terminal, start your Apostrophe project:
 ```bash
 cd my-apostrophe-project
 npm install
+export APOS_EXTERNAL_FRONT_KEY=your-secret-goes-here
 npm run dev
 ```
 
@@ -561,8 +566,8 @@ present during editing that should not be part of a visible URL.
 As a convenience, Apostrophe provides `aposSetQueryParameter` to abstract
 all that away.
 
-Here is how the `BlogIndexPage.astro` component of the [apostrophecms/astro-frontend]
-(https://github.com/apostrophecms/astro-frontend) project generates
+Here is how the `BlogIndexPage.astro` component of the
+[apostrophecms/astro-frontend](https://github.com/apostrophecms/astro-frontend) project generates
 links to the each page of blog posts:
 
 ```js
@@ -625,7 +630,7 @@ the appropriate integration, then `import` your components freely in your
 `.astro` files. For complete documentation and examples, see the
 [`@astrojs/react` integration](https://docs.astro.build/en/guides/integrations-guide/react/).
 
-In this way, Astro acts as a **univeral bridge** to essentially all modern
+In this way, Astro acts as a **universal bridge** to essentially all modern
 frontend frameworks.
 
 ## A note on production use
