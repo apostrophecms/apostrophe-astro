@@ -1,5 +1,9 @@
 # Changelog
 
+## UNRELEASED
+
+* Documentation fixes only.
+
 ## 1.0.3 (2023-12-27)
 
 * Documentation typo that impacts Linux and other case sensitive systems fixed.

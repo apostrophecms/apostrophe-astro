@@ -235,7 +235,7 @@ export default widgetComponents;
 > Note that even basic widget types like `@apostrophecms/image` do need an Astro
 template in your project. This integration does not currently ship with built-in
 Astro templates for all of the common Apostrophe widgets. However, see the provided
-[astro frontend starter project](apostrophecms/astro-frontend) for examples of
+[astro frontend starter project](https://github.com/apostrophecms/astro-frontend) for examples of
 several of these.
 
 Note that the Apostrophe widget name (on the left) is the name of your widget module **without**
@@ -510,8 +510,8 @@ Defining and using a web component in an Astro widget component has much
 the same effect as defining a widget player in a standalone Apostrophe project.
 
 Here is a simple outline of such a web component. For a complete example of
-the same widget, check out the source code of `VideoWidget.astro` in our [apostrophecms/astro-frontend]
-(https://github.com/apostrophecms/astro-frontend) project.
+the same widget, check out the source code of `VideoWidget.astro` in our
+[apostrophecms/astro-frontend](https://github.com/apostrophecms/astro-frontend) project.
 
 ```js
 ---
