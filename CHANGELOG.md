@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## 1.0.5 (2024-02-07)
 
 * Compatible with Astro's `ViewTransition` feature when editing.
 
