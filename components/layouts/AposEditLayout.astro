@@ -1,6 +1,6 @@
 ---
 const { title, bodyClass, aposData, lang } = Astro.props
-const bundleSrc = `${aposData.aposBodyData?.assetBaseUrl}/apos-module-bundle.js`
+const bundleSrc = `${aposData.aposBodyData?.assetBaseUrl}/apos-module-bundle.js?vt=${new Date().getTime()}`
 ---
 
 <!DOCTYPE html>
