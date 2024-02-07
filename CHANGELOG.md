@@ -2,7 +2,10 @@
 
 ## 1.0.5 (2024-02-07)
 
-* Compatible with Astro's `ViewTransition` feature when editing.
+* Compatible with Astro's `ViewTransition` feature when editing, via
+a workaround. Since this workaround imposes a performance penalty
+(only for editors, not the public), the `viewTransitionWorkaround`
+option must be set to `true` to enable it.
 
 ## 1.0.4 (2024-01-22)
 

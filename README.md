@@ -98,6 +98,7 @@ export default defineConfig({
       aposHost: 'http://localhost:3000',
       widgetsMapping: './src/widgets',
       templatesMapping: './src/templates',
+      viewTransitionWorkaround: false,
       forwardHeaders: [
         'content-security-policy', 
         'strict-transport-security', 
@@ -141,6 +142,16 @@ The file in your project that contains the mapping between Apostrophe widget typ
 ### `templatesMapping` (mandatory)
 
 The file in your project that contains the mapping between Apostrophe templates and your Astro templates (see below).
+
+### `viewTransitionWorkaround` (optional)
+
+If set to `true`, Apostrophe will refresh its admin UI JavaScript on
+every page transition, to ensure compatibility with Astro
+[view transitions](https://docs.astro.build/en/guides/view-transitions/).
+If you are not using this feature of Astro, you can omit this flag to
+improve performance for editors. Ordinary website visitors are
+not impacted in any case. We are seeking an alternative solution to
+eliminate this option.
 
 ### `forwardHeaders`  
 

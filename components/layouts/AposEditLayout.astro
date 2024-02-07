@@ -1,6 +1,9 @@
 ---
-const { title, bodyClass, aposData, lang } = Astro.props
-const bundleSrc = `${aposData.aposBodyData?.assetBaseUrl}/apos-module-bundle.js?vt=${new Date().getTime()}`
+const { title, bodyClass, aposData, lang } = Astro.props;
+import config from 'virtual:apostrophe-config';
+const { viewTransitionWorkaround } = config;
+const cacheBuster = viewTransitionWorkaround ? `?cb=${new Date().getTime()}` : '';
+const bundleSrc = `${aposData.aposBodyData?.assetBaseUrl}/apos-module-bundle.js${cacheBuster}`;
 ---
 
 <!DOCTYPE html>
