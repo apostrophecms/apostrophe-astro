@@ -274,6 +274,7 @@ import AposTemplate from '@apostrophecms/apostrophe-astro/components/AposTemplat
 const aposData = await aposPageFetch(Astro.request);
 const bodyClass = `myclass`;
 
+console.log('response is:', aposData);
 if (aposData.redirect) {
   return Astro.redirect(aposData.url, aposData.status);
 }

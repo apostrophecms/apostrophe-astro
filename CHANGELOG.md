@@ -1,5 +1,12 @@
 # Changelog
 
+## UNRELEASED
+
+* Visiting the `/login` page when already logged in no longer results in
+an undesired direct response from Apostrophe. Redirects within the site issued
+on the Apostrophe side are now passed back through Astro, allowing Astro to decide
+whether to proxy them or handle them directly according to its normal rules.
+
 ## 1.0.5 (2024-02-07)
 
 * Compatible with Astro's `ViewTransition` feature when editing, via
