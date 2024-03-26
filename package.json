@@ -7,6 +7,6 @@
   "author": "Apostrophe Technologies",
   "license": "MIT",
   "dependencies": {
-    "undici": "^6.10.1"
+    "node-fetch": "^3.3.2"
   }
 }
