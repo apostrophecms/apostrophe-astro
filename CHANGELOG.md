@@ -6,6 +6,11 @@
 an undesired direct response from Apostrophe. Redirects within the site issued
 on the Apostrophe side are now passed back through Astro, allowing Astro to decide
 whether to proxy them or handle them directly according to its normal rules.
+* Use `node-fetch` rather than `undici` for its multivalued headers support.
+
+## 1.0.6 (2024-03-26)
+
+* Change the way we fetch from Apostrophe by using `undici` `request` method, so as all headers are correctly forwarded. As on latest Node.js versions, headers like `Host` are no more forwarded by the regular `fetch` global method.
 
 ## 1.0.5 (2024-02-07)
 
