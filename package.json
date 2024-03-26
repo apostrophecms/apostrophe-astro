@@ -1,9 +1,12 @@
 {
   "name": "@apostrophecms/apostrophe-astro",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "description": "Apostrophe integration for Astro",
   "main": "index.js",
   "author": "Apostrophe Technologies",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "undici": "^6.10.1"
+  }
 }
