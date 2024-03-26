@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.6 (2024-03-26)
+
+* Change the way we fetch from Apostrophe by using `undici` `request` method, so as all headers are correctly forwarded. As on latest Node.js versions, headers like `Host` are no more forwarded by the regular `fetch` global method.
+
 ## 1.0.5 (2024-02-07)
 
 * Compatible with Astro's `ViewTransition` feature when editing, via
