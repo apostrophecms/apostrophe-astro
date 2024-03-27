@@ -1,5 +1,11 @@
 # Changelog
 
+## UNRELEASED
+
+* Visiting the `/login` page when already logged in no longer results in
+an undesired direct response from Apostrophe. Redirects within api routes like the login issued
+on the Apostrophe side are now sending a redirect response as per Astro endpoints documentation.
+
 ## 1.0.6 (2024-03-26)
 
 * Change the way we fetch from Apostrophe by using `undici` `request` method, so as all headers are correctly forwarded. As on latest Node.js versions, headers like `Host` are no more forwarded by the regular `fetch` global method.
