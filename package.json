@@ -1,6 +1,6 @@
 {
   "name": "@apostrophecms/apostrophe-astro",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "type": "module",
   "description": "Apostrophe integration for Astro",
   "main": "index.js",

@@ -1,10 +1,13 @@
 # Changelog
 
-## UNRELEASED
+## 1.0.7 (2024-03-28)
 
 * Visiting the `/login` page when already logged in no longer results in
 an undesired direct response from Apostrophe. Redirects within api routes like the login issued
 on the Apostrophe side are now sending a redirect response as per Astro endpoints documentation.
+* Page refreshes no longer alternate between displaying the admin UI and not displaying it
+with each refresh in certain configurations.
+* Thanks to Michelin for collaborating on the solution.
 
 ## 1.0.6 (2024-03-26)
 
