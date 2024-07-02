@@ -13,6 +13,8 @@ request.headers.set('apos-external-front-key', key);
 const response = await aposResponse(request);
 const responseBody = await response.json();
 const { widget, ...props } = responseBody;
-
+if (!widget) {
+  throw new Error('There was an issue while rendering the widget in the renderWidget endpoint.');
+}
 ---
 <AposWidget {widget} {...props} />
