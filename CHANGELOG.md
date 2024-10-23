@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## 1.0.9 (2024-10-23)
 
 * Prevent the `Connection: Upgrade` header from breaking Astro's `fetch` calls to Apostrophe when hosted in an environment that permits websocket upgrades of existing connections.
 * Refactored redundant code for building requests with the external front key, etc.
