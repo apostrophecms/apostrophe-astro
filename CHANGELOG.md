@@ -1,5 +1,10 @@
 # Changelog
 
+## UNRELEASED
+
+* Prevent the `Connection: Upgrade` header from breaking Astro's `fetch` calls to Apostrophe when hosted in an environment that permits websocket upgrades of existing connections.
+* Refactored redundant code for building requests with the external front key, etc.
+
 ## 1.0.8 (2024-07-02)
 
 * The `renderWidget` route will no longer crash if there was an issue getting the `render-widget` route from Apostrophe (like a mandatory field missing), it will respond with a 500 only, with a log message in the console. Thanks to Michelin for contributing this fix.
