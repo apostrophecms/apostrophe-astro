@@ -29,7 +29,11 @@ if (aposData.errorFetchingPage) {
   Astro.response.status = 500;
 }
 
-const LayoutComponent = aposData.user ? (Astro.url.searchParams.get('aposRefresh') ? AposRefreshLayout : AposEditLayout) : AposRunLayout;
+const LayoutComponent = aposData.user 
+  ? (Astro.url.searchParams.get('aposRefresh') 
+    ? AposRefreshLayout 
+    : AposEditLayout) 
+  : AposRunLayout;
 ---
 <LayoutComponent {...Astro.props}>
   <slot name="startBody" slot="startBody"/>
