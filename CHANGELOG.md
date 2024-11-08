@@ -1,5 +1,11 @@
 # Changelog
 
+## UNRELEASED
+
+### Adds
+
+* Add support for automated bundles injection in Edit (apos) mode, required for supporting the new core "manifest" builds (when available).
+
 ## 1.0.9 (2024-10-23)
 
 * Prevent the `Connection: Upgrade` header from breaking Astro's `fetch` calls to Apostrophe when hosted in an environment that permits websocket upgrades of existing connections.
