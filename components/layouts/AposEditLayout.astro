@@ -11,12 +11,15 @@ let bundlesCss = "";
 let bundlesJs = "";
 
 if (aposData.bundleMarkup) {
-  bundlesCss = aposData.bundleMarkup.css
-    .map((bundle) => bundle.replace(/\.css$/, ".css" + cacheBuster))
-    .join("");
-  bundlesJs = aposData.bundleMarkup.js
-    .map((bundle) => bundle.replace(/\.js$/, ".js" + cacheBuster))
-    .join("");
+  bundlesCss =
+    aposData.bundleMarkup.css
+      ?.map((bundle) => bundle.replace(/\.css$/, ".css" + cacheBuster))
+      .join("") ?? "";
+
+  bundlesJs =
+    aposData.bundleMarkup.js
+      ?.map((bundle) => bundle.replace(/\.js$/, ".js" + cacheBuster))
+      .join("") ?? "";
 } else {
   bundlesJs = `<script src="${aposData.aposBodyData?.assetBaseUrl ?? ""}/apos-module-bundle.js${cacheBuster}"></script>`;
 }
