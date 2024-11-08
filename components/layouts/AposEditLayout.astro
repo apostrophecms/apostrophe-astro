@@ -1,35 +1,56 @@
 ---
+import config from "virtual:apostrophe-config";
+
 const { title, bodyClass, aposData, lang } = Astro.props;
-import config from 'virtual:apostrophe-config';
 const { viewTransitionWorkaround } = config;
-const cacheBuster = viewTransitionWorkaround ? `?cb=${new Date().getTime()}` : '';
-const bundleSrc = `${aposData.aposBodyData?.assetBaseUrl}/apos-module-bundle.js${cacheBuster}`;
+const cacheBuster = viewTransitionWorkaround
+  ? `?cb=${new Date().getTime()}`
+  : "";
+
+let bundlesCss = "";
+let bundlesJs = "";
+
+if (aposData.bundleMarkup) {
+  bundlesCss = aposData.bundleMarkup.css
+    .map((bundle) => bundle.replace(/\.css$/, ".css" + cacheBuster))
+    .join("");
+  bundlesJs = aposData.bundleMarkup.js
+    .map((bundle) => bundle.replace(/\.js$/, ".js" + cacheBuster))
+    .join("");
+} else {
+  bundlesJs = `<script src="${aposData.aposBodyData?.assetBaseUrl ?? ""}/apos-module-bundle.js${cacheBuster}"></script>`;
+}
 ---
 
-<!DOCTYPE html>
-<html lang={ lang }>
+<!doctype html>
+<html lang={lang}>
   <head>
-    <slot name="startHead"/>
-    <title>{ title }</title>
-    <slot name="standardHead"/>
-    <slot name="extraHead"/>
+    <slot name="startHead" />
+    <Fragment set:html={bundlesCss} is:inline />
+    <title>{title}</title>
+    <slot name="standardHead" />
+    <slot name="extraHead" />
   </head>
-  <body data-apos-generated class={ bodyClass } data-apos={ JSON.stringify(aposData.aposBodyData) }>
-    <slot name="startBody"/>
+  <body
+    data-apos-generated
+    class={bodyClass}
+    data-apos={JSON.stringify(aposData.aposBodyData)}
+  >
+    <slot name="startBody" />
     <div id="apos-busy"></div>
     <div id="apos-admin-bar"></div>
     <div id="apos-notification"></div>
 
     <div data-apos-refreshable>
-      <slot name="beforeMain"/>
-      <slot name="main"/>
-      <slot name="afterMain"/>
+      <slot name="beforeMain" />
+      <slot name="main" />
+      <slot name="afterMain" />
     </div>
 
     <div id="apos-modals"></div>
     <div id="apos-command-menu"></div>
 
-    <script src={bundleSrc} is:inline />
-    <slot name="endBody"/>
+    <Fragment set:html={bundlesJs} is:inline />
+    <slot name="endBody" />
   </body>
 </html>
