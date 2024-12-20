@@ -1,5 +1,12 @@
 # Changelog
 
+## UNRELEASED
+
+### Changes
+* The configuration array for headers passed from Apostrophe to the browser has been changed from `forwardHeaders` to `includeResponseHeaders` with BC maintained.
+* A new configuration option `excludeResponseHeaders` has been added to allow exclusion of headers like `host` being sent from the browser to Apostrophe.
+* The `README.MD` has been updated with the new configuration options.
+
 ## 1.1.0 (2024-11-20)
 
 ### Adds
