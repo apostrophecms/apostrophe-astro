@@ -2,7 +2,8 @@ export function vitePluginApostropheConfig(
   aposHost,
   forwardHeaders = null,
   viewTransitionWorkaround,
-  includeResponseHeaders = null
+  includeResponseHeaders = null,
+  excludeRequestHeaders = null
 ) {
   const virtualModuleId = "virtual:apostrophe-config";
   const resolvedVirtualModuleId = "\0" + virtualModuleId;
@@ -24,6 +25,9 @@ export function vitePluginApostropheConfig(
             aposHost: "${aposHost}"
             ${headersToInclude ? `,
               includeResponseHeaders: ${JSON.stringify(headersToInclude)}` : ''
+            }
+            ${excludeRequestHeaders ? `,
+              excludeRequestHeaders: ${JSON.stringify(excludeRequestHeaders)}` : ''
             }
             ${viewTransitionWorkaround ? `,
               viewTransitionWorkaround: true` : ''
