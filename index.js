@@ -19,7 +19,8 @@ export default function apostropheIntegration(options) {
               vitePluginApostropheConfig(
                 options.aposHost,
                 options.forwardHeaders,
-                options.viewTransitionWorkaround
+                options.viewTransitionWorkaround,
+                options.includeResponseHeaders,
               ),
             ],
           },
