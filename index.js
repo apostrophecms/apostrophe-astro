@@ -21,6 +21,7 @@ export default function apostropheIntegration(options) {
                 options.forwardHeaders,
                 options.viewTransitionWorkaround,
                 options.includeResponseHeaders,
+                options.excludeRequestHeaders
               ),
             ],
           },
