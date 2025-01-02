@@ -99,14 +99,17 @@ export default defineConfig({
       widgetsMapping: './src/widgets',
       templatesMapping: './src/templates',
       viewTransitionWorkaround: false,
-      forwardHeaders: [
+      includeResponseHeaders: [
         'content-security-policy', 
         'strict-transport-security', 
         'x-frame-options',
         'referrer-policy',
-        'cache-control',
-        'host'
+        'cache-control'
       ],
+      excludeRequestHeaders: [
+        // For single-site setups or hosting on multiple servers, block the host header
+        'host'
+      ]
       proxyRoutes: [
         // Custom URLs that should be proxied to Apostrophe.
         // Note that all of `/api/v1` is already proxied, so
@@ -153,17 +156,28 @@ improve performance for editors. Ordinary website visitors are
 not impacted in any case. We are seeking an alternative solution to
 eliminate this option.
 
-### `forwardHeaders`  
+### `includeResponseHeaders`
 
-An array of HTTP headers that you want to forward from Apostrophe to the final response sent to the browser - useful if you want to use an Apostrophe module like `@apostrophecms/security-headers` and want to keep those headers as configured in Apostrophe.  
+An array of HTTP headers that you want to include from Apostrophe to the final response sent to the browser - useful if you want to use an Apostrophe module like `@apostrophecms/security-headers` and want to keep those headers as configured in Apostrophe and to preserve Apostrophe's caching headers.
+
 At the present time, Astro is not compatible with the `nonce` property of `content-security-policy` `script-src` value. So this is automatically removed with that integration. The rest of the CSP header remains unchanged.
+
+### `excludeRequestHeaders`
+
+An array of HTTP headers that you want to prevent from being forwarded from the browser to Apostrophe. This is particularly useful in single-site setups where you want to block the `host` header to allow Astro and Apostrophe to run on different hostnames.
+
+By default, all headers are forwarded except those specified in this array.
+
+### `forwardHeaders` (deprecated)
+
+This option has been replaced by `includeResponseHeaders` which provides clearer naming for its purpose. If both options are provided, `includeResponseHeaders` takes precedence. `forwardHeaders` will be removed in a future version.
 
 ### Mapping Apostrophe templates to Astro components
 
 Since the front end of our project is entirely Astro, we'll need to create Astro components corresponding to each
 template that Apostrophe would normally render with Nunjucks.
-  
-Create your template mapping in `src/templates/index.js` file.   
+
+Create your template mapping in `src/templates/index.js` file.
 As shown above, this file path must then be added to your `astro.config.mjs` file,
 in the `templatesMapping` option of the `apostrophe` integration.
 
