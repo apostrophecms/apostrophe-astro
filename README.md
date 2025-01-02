@@ -158,13 +158,13 @@ eliminate this option.
 
 ### `includeResponseHeaders`
 
-An array of HTTP headers that you want to include from Apostrophe to the final response sent to the browser - useful if you want to use an Apostrophe module like `@apostrophecms/security-headers` and want to keep those headers as configured in Apostrophe.
+An array of HTTP headers that you want to include from Apostrophe to the final response sent to the browser - useful if you want to use an Apostrophe module like `@apostrophecms/security-headers` and want to keep those headers as configured in Apostrophe and to preserve Apostrophe's caching headers.
 
 At the present time, Astro is not compatible with the `nonce` property of `content-security-policy` `script-src` value. So this is automatically removed with that integration. The rest of the CSP header remains unchanged.
 
 ### `excludeRequestHeaders`
 
-An array of HTTP headers that you want to prevent from being forwarded from the browser to Apostrophe. This is particularly useful in single-site setups where you want to block the `host` header to allow Astro and Apostrophe to run on different domains or ports.
+An array of HTTP headers that you want to prevent from being forwarded from the browser to Apostrophe. This is particularly useful in single-site setups where you want to block the `host` header to allow Astro and Apostrophe to run on different hostnames.
 
 By default, all headers are forwarded except those specified in this array.
 
