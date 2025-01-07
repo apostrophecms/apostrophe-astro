@@ -6,6 +6,7 @@
 * The configuration array for headers passed from Apostrophe to the browser has been changed from `forwardHeaders` to `includeResponseHeaders` with BC maintained.
 * A new configuration option `excludeResponseHeaders` has been added to allow exclusion of headers like `host` being sent from the browser to Apostrophe.
 * The `README.MD` has been updated with the new configuration options.
+* Clearer error messages have been added to indicate that either the backend server has not been started, or that the `APOS_EXTERNAL_FRONT_KEY` strings don't match.
 
 ## 1.1.0 (2024-11-20)
 
