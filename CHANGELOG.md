@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## 1.2.0 (2025-01-27)
 
 ### Changes
 * The configuration array for headers passed from Apostrophe to the browser has been changed from `forwardHeaders` to `includeResponseHeaders` with BC maintained.
