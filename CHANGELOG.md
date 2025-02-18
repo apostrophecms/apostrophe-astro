@@ -1,5 +1,11 @@
 # Changelog
 
+## UNRELEASED
+
+### Fixes
+
+* The `lang` attribute of the `<html>` tag now respects localization.
+
 ## 1.2.0 (2025-01-27)
 
 ### Changes
