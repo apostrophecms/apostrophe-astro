@@ -1,9 +1,9 @@
 ---
-const { title, bodyClass, lang } = Astro.props;
+const { title, bodyClass, aposData } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang={ lang }>
+<html lang={ aposData.locale }>
   <head>
     <slot name="startHead" />
     <title>{ title }</title>

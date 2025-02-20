@@ -1,7 +1,7 @@
 ---
 import config from "virtual:apostrophe-config";
 
-const { title, bodyClass, aposData, lang } = Astro.props;
+const { title, bodyClass, aposData } = Astro.props;
 const { viewTransitionWorkaround } = config;
 const cacheBuster = viewTransitionWorkaround
   ? `?cb=${new Date().getTime()}`
@@ -26,7 +26,7 @@ if (aposData.bundleMarkup) {
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={aposData.locale}>
   <head>
     <slot name="startHead" />
     <Fragment set:html={bundlesCss} is:inline />
