@@ -78,7 +78,7 @@ information from ApostropheCMS without your permission.
 ## Configuration (Astro)
 
 Since this is an Astro integration, you will need to add it to your Astro project's `astro.config.mjs` file.
-Here is a working `astro.config.js` file for a project with an Apostrophe CMS backend.
+Here is a working `astro.config.mjs` file for a project with an Apostrophe CMS backend.
 
 ```js
 import { defineConfig } from 'astro/config';
@@ -680,7 +680,7 @@ Only URLs with a scheme in: file and data are supported by the default ESM
 loader. Received protocol 'virtual:'
 ```
 
-Then you most likely left out this part of the above `Astro.config.js` file:
+Then you most likely left out this part of the above `astro.config.mjs` file:
 
 ```javascript
 export default defineConfig({
