@@ -1,5 +1,11 @@
 # Changelog
 
+## UNRELEASED
+
+### Adds
+
+* Add support for decoding the response body needed for some hosting added to the `aposResponse.js`.
+
 ## 1.2.1 (2025-03-19)
 
 ### Fixes
