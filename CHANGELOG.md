@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## 1.3.1 (2025-05-23)
 
 ### Fixes
 
