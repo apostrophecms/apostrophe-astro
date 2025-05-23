@@ -1,5 +1,11 @@
 # Changelog
 
+## UNRELEASED
+
+### Fixes
+
+* Fix a bug when the Astro app can crash due to live widget preview in some cases.
+
 ## 1.3.0 (2025-04-16)
 
 ### Adds
