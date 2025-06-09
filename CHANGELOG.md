@@ -6,6 +6,10 @@
 
 * Add `util` (currently containing only `slugify`) and `attachment` helpers to mimic Apostrophe's Nunjucks helpers.
 
+### Fixes
+
+* Fix dupllicate function that breaks project builds.
+
 ## 1.3.1 (2025-05-23)
 
 ### Fixes
