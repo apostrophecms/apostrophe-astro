@@ -1,5 +1,11 @@
 # Changelog
 
+## UNRELEASED
+
+### Adds
+
+* Add `util` (currently containing only `slugify`) and `attachment` helpers to mimic Apostrophe's Nunjucks helpers.
+
 ## 1.3.1 (2025-05-23)
 
 ### Fixes
