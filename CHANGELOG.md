@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## 1.4.0 (2025-06-11)
 
 ### Adds
 
@@ -8,7 +8,7 @@
 
 ### Fixes
 
-* Fix dupllicate function that breaks project builds.
+* Fix duplicate function that breaks project builds.
 
 ## 1.3.1 (2025-05-23)
 
