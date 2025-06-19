@@ -6,13 +6,20 @@ import aposResponse from "../lib/aposResponse.js";
 const request = aposRequest(Astro.request);
 const response = await aposResponse(request);
 const text = await response.text();
+const statusCode = response.status;
+
 let responseBody = { widget: null };
 let shouldRender = true;
+let renderWarn = false;
 try {
   if (text === "aposLivePreviewSchemaNotYetValid") {
     shouldRender = false;
   } else {
     responseBody = JSON.parse(text);
+  }
+  if (statusCode === 400) {
+    shouldRender = false;
+    renderWarn = true;
   }
 } catch (error) {
   console.error("Error:", error);
@@ -25,4 +32,6 @@ if (!widget && shouldRender) {
   );
 }
 ---
-{widget && <AposWidget {widget} {...props} />}
+
+{widget && !renderWarn && <AposWidget {widget} {...props} />}
+{renderWarn && <p>Unable to render this widget.</p>}

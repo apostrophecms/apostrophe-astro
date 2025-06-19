@@ -1,5 +1,11 @@
 # Changelog
 
+## UNRELEASED
+
+### Fixes
+
+* Handle deep schema validation errors when rendering widgets, so that a message is displayed in the widget preview instead of a crash.
+
 ## 1.4.0 (2025-06-11)
 
 ### Adds
