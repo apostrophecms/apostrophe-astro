@@ -30,8 +30,10 @@ if (aposData.bundleMarkup) {
   <head>
     <slot name="startHead" />
     <Fragment set:html={bundlesCss} is:inline />
+    <Fragment set:html={aposData.prependHead} is:inline />
     <title>{title}</title>
     <slot name="standardHead" />
+    <Fragment set:html={aposData.appendHead} is:inline />
     <slot name="extraHead" />
   </head>
   <body
@@ -39,6 +41,7 @@ if (aposData.bundleMarkup) {
     class={bodyClass}
     data-apos={JSON.stringify(aposData.aposBodyData)}
   >
+    <Fragment set:html={aposData.prependBody} is:inline />
     <slot name="startBody" />
     <div id="apos-busy"></div>
     <div id="apos-admin-bar"></div>
@@ -49,6 +52,8 @@ if (aposData.bundleMarkup) {
       <slot name="main" />
       <slot name="afterMain" />
     </div>
+
+    <Fragment set:html={aposData.appendBody} is:inline />
 
     <div id="apos-modals"></div>
     <div id="apos-command-menu"></div>
