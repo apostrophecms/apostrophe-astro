@@ -2,19 +2,23 @@
 const { title, bodyClass, aposData } = Astro.props;
 ---
 
-<!DOCTYPE html>
-<html lang={ aposData.locale }>
+<!doctype html>
+<html lang={aposData.locale}>
   <head>
     <slot name="startHead" />
-    <title>{ title }</title>
+    <Fragment set:html={aposData.prependHead} is:inline />
+    <title>{title}</title>
     <slot name="standardHead" />
+    <Fragment set:html={aposData.appendHead} is:inline />
     <slot name="extraHead" />
   </head>
-  <body class={ bodyClass }>
+  <body class={bodyClass}>
+    <Fragment set:html={aposData.prependBody} is:inline />
     <slot name="startBody" />
     <slot name="beforeMain" />
     <slot name="main" />
     <slot name="afterMain" />
+    <Fragment set:html={aposData.appendBody} is:inline />
     <slot name="endBody" />
   </body>
 </html>
