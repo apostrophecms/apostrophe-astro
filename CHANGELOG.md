@@ -4,7 +4,7 @@
 
 ### Adds
 
-* Add support for `prependHead`, `appendHead`, `prependBody`, and `appendBody` in the `aposData` object, allowing for custom HTML to be injected into the `<head>` and `<body>` sections of the layout. More details can be found in the [Apostrophe documentation](https://docs.apostrophecms.org/reference/modules/module.html#prepend-and-append-nodes).
+* Add support for `prependHead`, `appendHead`, `prependBody`, and `appendBody` in the `aposData` object, allowing for custom HTML to be injected into the `<head>` and `<body>` sections of the layout.
 
 ### Fixes
 
