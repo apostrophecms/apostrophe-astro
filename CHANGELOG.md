@@ -1,5 +1,11 @@
 # Changelog
 
+UNRELEASED
+
+### Changes
+
+* Guide developers to our actively supported starter kits.
+
 ## 1.5.0 (2025-08-06)
 
 ### Adds
