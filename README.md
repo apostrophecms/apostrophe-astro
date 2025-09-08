@@ -34,23 +34,26 @@ Svelte, etc. (see the [Astro integrations page](https://docs.astro.build/en/guid
 When you use this module, you will have **two** projects:
 
 1. An Astro project. This is where you write your templates and frontend code.
-As a starting point, we recommend forking our
-[apostrophecms/astro-frontend](https://github.com/apostrophecms/astro-frontend) project.
 
 2. An Apostrophe project. This is where you define your page types, widget types
-and other content types with their schemas and other customizations. As a
-starting point, we recommend forking our
-[apostrophecms/starter-kit-astro](https://github.com/apostrophecms/starter-kit-astro) project,
-or creating a new project from it using our CLI:
-
-```bash
-apos create my-apos-project-name --starter=astro
-```
+and other content types with their schemas and other customizations. 
 
 This kind of dual-project CMS integration is typical for Astro.
 
-> Note that this module, `@apostrophecms/apostrophe-astro`, is meant to be installed as a dependency of the *Astro project*,
-> not the Apostrophe project.
+The best way to keep everything consistent is to build these in `frontend` and `backend` subdirectories of the same git repository.
+
+To get you started quickly, we recommend one of our official Astro starter kits:
+
+* [apostrophecms/starter-kit-astro-essentials](https://github.com/apostrophecms/starter-kit-astro-essentials) is best for a clean start with as little extra code as possible.
+* [apostrophecms/starter-kit-astro-apollo](https://github.com/apostrophecms/starter-kit-astro-apollo) is a full-fledged project with a blog, a design system and other nice touches.
+* [apostrophecms/starter-kit-astro-pro](https://github.com/apostrophecms/starter-kit-astro-pro) is great for those who expect to use our [Pro features](https://apostrophecms.com/pro) right away, but keep in mind you can add those modules to any project later.
+
+> 💡 These combined Astro + Apostrophe projects are best launched by forking the repository, not using our CLI. Follow the links to see how to fork these projects and get started on your own. 
+
+You can also adapt your own existing ApostropheCMS project as explained below.
+
+> Note that this module, `@apostrophecms/apostrophe-astro`, is meant to be installed as a dependency of your *Astro project*,
+> not your Apostrophe project.
 
 This module is currently designed for use with Astro's `output: 'server'` setting (SSR mode), so that you can edit your content
 directly on the page. Support for export as a static site is under consideration for the future.
@@ -259,9 +262,7 @@ export default widgetComponents;
 
 > Note that even basic widget types like `@apostrophecms/image` do need an Astro
 template in your project. This integration does not currently ship with built-in
-Astro templates for all of the common Apostrophe widgets. However, see the provided
-[astro frontend starter project](https://github.com/apostrophecms/astro-frontend) for examples of
-several of these.
+Astro templates for all of the common Apostrophe widgets. However, all of the starter kits referenced in this document include all the necessary code for the most common core widgets.
 
 Note that the Apostrophe widget name (on the left) is the name of your widget module **without**
 the `-widget` part.
@@ -536,7 +537,7 @@ the same effect as defining a widget player in a standalone Apostrophe project.
 
 Here is a simple outline of such a web component. For a complete example of
 the same widget, check out the source code of `VideoWidget.astro` in our
-[apostrophecms/astro-frontend](https://github.com/apostrophecms/astro-frontend) project.
+[Astro Essentials Starter Kit](https://github.com/apostrophecms/starter-kit-astro-essentials/blob/main/frontend/src/widgets/VideoWidget.astro) project.
 
 ```js
 ---
@@ -592,8 +593,8 @@ As a convenience, Apostrophe provides `aposSetQueryParameter` to abstract
 all that away.
 
 Here is how the `BlogIndexPage.astro` component of the
-[apostrophecms/astro-frontend](https://github.com/apostrophecms/astro-frontend) project generates
-links to the each page of blog posts:
+[Starter Kit Astro Essentials](https://github.com/apostrophecms/starter-kit-astro-essentials/blob/main/frontend/src/templates/BlogIndexPage.astro) project generates
+links to each page of blog posts:
 
 ```js
 ---
@@ -661,7 +662,7 @@ frontend frameworks.
 ## A note on production use
 
 For production use, any Astro hosting adapter that supports `mode: 'server'` should
-be acceptable. In particular, our [apostrophecms/astro-frontend](https://github.com/apostrophecms/astro-frontend) project comes pre-configured
+be acceptable. In particular, our [Starter Kit Astro Essentials](https://github.com/apostrophecms/starter-kit-astro-essentials) project comes pre-configured
 for the `node` adapter, and includes `npm run build` and `npm run serve`
 support to take advantage of that. In `server` mode there is not a great
 deal of difference between these and `npm run dev`, but there is less
