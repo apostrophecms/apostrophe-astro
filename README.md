@@ -290,7 +290,7 @@ const aposData = await aposPageFetch(Astro.request);
 const bodyClass = `myclass`;
 
 if (aposData.redirect) {
-  return Astro.redirect(apxosData.url, aposData.status);
+  return Astro.redirect(aposData.url, aposData.status);
 }
 if (aposData.notFound) {
   Astro.response.status = 404;
