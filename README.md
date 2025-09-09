@@ -46,7 +46,7 @@ To get you started quickly, we recommend one of our official Astro starter kits:
 
 * [apostrophecms/starter-kit-astro-essentials](https://github.com/apostrophecms/starter-kit-astro-essentials) is best for a clean start with as little extra code as possible.
 * [apostrophecms/starter-kit-astro-apollo](https://github.com/apostrophecms/starter-kit-astro-apollo) is a full-fledged project with a blog, a design system and other nice touches.
-* [apostrophecms/starter-kit-astro-pro](https://github.com/apostrophecms/starter-kit-astro-pro) is great for those who expect to use our [Pro features](https://apostrophecms.com/pro) right away, but keep in mind you can add those modules to any project later.
+* [apostrophecms/starter-kit-astro-apollo-pro](https://github.com/apostrophecms/starter-kit-astro-apollo-pro) is great for those who expect to use our [Pro features](https://apostrophecms.com/pro) right away, but keep in mind you can add those modules to any project later.
 
 > 💡 These combined Astro + Apostrophe projects are best launched by forking the repository, not using our CLI. Follow the links to see how to fork these projects and get started on your own. 
 

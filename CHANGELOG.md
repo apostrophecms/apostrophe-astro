@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.2 (2025-09-09)
+
+### Fixes
+
+* Corrected the link to the astro apollo pro starter kit in the documentation.
+
 ## 1.5.1 (2025-09-08)
 
 ### Changes
