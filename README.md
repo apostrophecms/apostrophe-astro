@@ -64,7 +64,7 @@ module into your Astro project. Install this module in your
 ```shell
 cd my-astro-project
 npm install @apostrophecms/apostrophe-astro
-``` 
+```
 
 *Astro 3.x and 4.x are both supported.*
 
@@ -138,13 +138,20 @@ at runtime with the `APOS_HOST` environment variable.
 
 During development it defaults automatically to: `http://localhost:3000`
 
+You can use `*` as value to allow all host. Should be used in conjunction with `portMapping` below.
+
 ### `widgetsMapping` (mandatory)  
 
-The file in your project that contains the mapping between Apostrophe widget types and your Astro components (see below).   
+The file in your project that contains the mapping between Apostrophe widget types and your Astro components (see below).
 
 ### `templatesMapping` (mandatory)
 
 The file in your project that contains the mapping between Apostrophe templates and your Astro templates (see below).
+
+### `portMapping` (optional)
+
+An array containing the mapping between the origin port and the target port.
+Setting `[ 4321, 3000 ]` means calls from `http://localhost:4321` will be forwarded to `http://localhost:3000`.
 
 ### `viewTransitionWorkaround` (optional)
 
@@ -452,12 +459,12 @@ the [attachment field format](https://v3.docs.apostrophecms.org/reference/api/fi
 
 Nothing! Well, almost.
 
-* Your project must be using Apostrophe 3.x.
-* You'll need to `npm update` your project to the latest version of `apostrophe`.
-* You'll need to set the `APOS_EXTERNAL_FRONT_KEY` environment variable to a secret
+- Your project must be using Apostrophe 3.x.
+- You'll need to `npm update` your project to the latest version of `apostrophe`.
+- You'll need to set the `APOS_EXTERNAL_FRONT_KEY` environment variable to a secret
 value of your choosing when running Apostrphe.
-* Make sure you set that **same value** when running your Astro project.
-* To avoid developer confusion, we recommend changing any page templates in your
+- Make sure you set that **same value** when running your Astro project.
+- To avoid developer confusion, we recommend changing any page templates in your
 Apostrophe project to provide a link to your Astro frontend site and
 remove all other output. Everyone, editors included, should go straight to Astro.
 
@@ -492,6 +499,7 @@ to Apostrophe. Therefore any additional extensions you have added such as
 Apostrophe's hCaptcha and TOTP modules will work as expected.
 
 ## Redirections
+
 When Apostrophe sends a response as a redirection, you will receive a specially
 formatted `aposData` object containing `redirect: true`, a `url` property for the url
 to redirect to, and a `status` for the redirection HTTP status code. This is handled
@@ -506,19 +514,22 @@ if (aposData.redirect) {
 ```
 
 ## 404 Not Found
+
 Much like the redirect case, when Apostrophe determines that the page was not
 found, `aposData.notFound` will be set to true. The example `[...slug].astro`
 file provided above includes logic to set Astro's status code to 404 in this
 situation.
 
 ## Reserved routes
-As this integration proxies certain Apostrophe endpoints, there are some routes that are taken by those endpoints:   
+
+As this integration proxies certain Apostrophe endpoints, there are some routes that are taken by those endpoints:
+
 - `/apos-frontend/[...slug]` for serving Apostrophe assets
 - `/uploads/[...slug]` for serving Apostrophe uploaded assets
 - `/api/v1/[...slug]` and `/[locale]/api/v1/[...slug]` for Apostrophe API endpoints
 - `/login` and `/[locale]/login` for the login page
 
-As all Apostrophe API endpoints are proxied, you can expose new api routes as usual in your Apostrophe modules, and be able to request them through your Astro application.   
+As all Apostrophe API endpoints are proxied, you can expose new api routes as usual in your Apostrophe modules, and be able to request them through your Astro application.
 Those proxies are forwarding all of the original request headers, such as cookies, so that Apostrophe login works normally.
 
 ## What about widget players?
