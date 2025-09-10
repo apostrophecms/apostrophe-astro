@@ -5,6 +5,7 @@
 ### Adds
 
 * Add support for `prependMain` and `appendMain` in the `aposData` object, allowing for custom HTML to be injected into the `<main>` sections of the layout.
+* Add `portMapping` option.
 
 ## 1.5.0 (2025-08-06)
 
