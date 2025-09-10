@@ -7,6 +7,18 @@
 * Add support for `prependMain` and `appendMain` in the `aposData` object, allowing for custom HTML to be injected into the `<main>` sections of the layout.
 * Add `portMapping` option.
 
+## 1.5.2 (2025-09-09)
+
+### Fixes
+
+* Corrected the link to the astro apollo pro starter kit in the documentation.
+
+## 1.5.1 (2025-09-08)
+
+### Changes
+
+* Guide developers to our actively supported starter kits.
+
 ## 1.5.0 (2025-08-06)
 
 ### Adds
