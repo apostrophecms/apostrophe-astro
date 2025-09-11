@@ -4,6 +4,7 @@ import AposWidget from './AposWidget.astro';
 const { area, ...props } = Astro.props;
 
 let attributes = {};
+
 const widgets = area?.items || [];
 
 const isEdit = area?._edit && Astro.url.searchParams.get('aposEdit');
@@ -45,8 +46,13 @@ function mergeWidgets(groups:Record<string,Record<string,Object>>) {
 ---
 <Wrapper {...attributes}>
 {widgets?.map((item) => {
+  const options = {
+    ...item._options,
+    ...widgetOptions[item.type]
+  };
+  const { _options, ...cleanItem } = item;
   return (
-    <AposWidget widget={item} options={widgetOptions[item.type]} {...props}/>
+    <AposWidget widget={cleanItem} options={options} {...props}/>
   )
   })}
 </Wrapper>
