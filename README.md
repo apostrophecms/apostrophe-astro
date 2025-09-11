@@ -36,7 +36,7 @@ When you use this module, you will have **two** projects:
 1. An Astro project. This is where you write your templates and frontend code.
 
 2. An Apostrophe project. This is where you define your page types, widget types
-and other content types with their schemas and other customizations. 
+and other content types with their schemas and other customizations.
 
 This kind of dual-project CMS integration is typical for Astro.
 
@@ -48,7 +48,7 @@ To get you started quickly, we recommend one of our official Astro starter kits:
 * [apostrophecms/starter-kit-astro-apollo](https://github.com/apostrophecms/starter-kit-astro-apollo) is a full-fledged project with a blog, a design system and other nice touches.
 * [apostrophecms/starter-kit-astro-apollo-pro](https://github.com/apostrophecms/starter-kit-astro-apollo-pro) is great for those who expect to use our [Pro features](https://apostrophecms.com/pro) right away, but keep in mind you can add those modules to any project later.
 
-> 💡 These combined Astro + Apostrophe projects are best launched by forking the repository, not using our CLI. Follow the links to see how to fork these projects and get started on your own. 
+> 💡 These combined Astro + Apostrophe projects are best launched by forking the repository, not using our CLI. Follow the links to see how to fork these projects and get started on your own.
 
 You can also adapt your own existing ApostropheCMS project as explained below.
 
@@ -232,8 +232,8 @@ the standard name for this template in ApostropheCMS.
 The integration comes with two additional special template names that can be mapped to Astro templates.
 You should not add a module name to these special names:
 
-- `apos-fetch-error`: served when Apostrophe generates a 500-class error. The integration will set Astro's response status to 500.
-- `apos-no-template`: served when there is no mapping corresponding to the Apostrophe page type for this page.
+* `apos-fetch-error`: served when Apostrophe generates a 500-class error. The integration will set Astro's response status to 500.
+* `apos-no-template`: served when there is no mapping corresponding to the Apostrophe page type for this page.
 
 See below for an example Astro template for the `@apostrophe-cms/home-page` type. But first,
 let's look at widgets.
@@ -317,13 +317,13 @@ Thanks to the `aposPageFetch` call, the `aposData` object will then contain all 
 the information normally provided by `data` in an ApostropheCMS Nunjucks template.
 This includes, but is not limited to:
 
-- `page`: the page document for the current URL, if any
-- `piece`: the piece document when on a "show page" for a piece page type
-- `pieces`: an array of pieces when on an "index page" for a piece page type
-- `user`: information about the currently logged-in user
-- `global`: the ApostropheCMS global document e.g. global settings, editable global
+* `page`: the page document for the current URL, if any
+* `piece`: the piece document when on a "show page" for a piece page type
+* `pieces`: an array of pieces when on an "index page" for a piece page type
+* `user`: information about the currently logged-in user
+* `global`: the ApostropheCMS global document e.g. global settings, editable global
 headers and footers, etc.
-- `query`: the `req.query` object, giving access to query parameters in the URL.
+* `query`: the `req.query` object, giving access to query parameters in the URL.
 
 Any other data that your custom Apostrophe code attaches to `req.data` is also
 available here.
@@ -339,21 +339,21 @@ integration to leverage the global layout.
 To override any aspect of the global layout, take advantage of the following Astro slots,
 which are closely related to what ApostropheCMS offers in Nunjucks:
 
-- `startHead`: slot in the very beginning of the `<head>`
-- `standardHead`: slot in the middle of `<head>`, just after `<title>`  
-- `extraHead`: still in the HTML `<head>`, at the very end
-- `startBody`: at the very beginning of the `<body>` - this is not part of the refresh zone in edit mode
-- `beforeMain`: at the very beginning of the main body zone - part of the refresh zone in edit mode
-- `main`: the inner part of the main body zone - part of the refresh zone in edit mode
-- `afterMain`: at the very end of the main body zone - part of the refresh zone in edit mode
-- `endBody`: at the very end of the `<body>` - this is not part of the refresh zone in edit mode
+* `startHead`: slot in the very beginning of the `<head>`
+* `standardHead`: slot in the middle of `<head>`, just after `<title>`  
+* `extraHead`: still in the HTML `<head>`, at the very end
+* `startBody`: at the very beginning of the `<body>` - this is not part of the refresh zone in edit mode
+* `beforeMain`: at the very beginning of the main body zone - part of the refresh zone in edit mode
+* `main`: the inner part of the main body zone - part of the refresh zone in edit mode
+* `afterMain`: at the very end of the main body zone - part of the refresh zone in edit mode
+* `endBody`: at the very end of the `<body>` - this is not part of the refresh zone in edit mode
 
 In addition, the `AposLayout` component expects four props:
 
-- `aposData`: the data fetched from Apostrophe
-- `title`: this will go in the `<title>` HTML tag
-- `lang` which will be set in the `<html>` `lang` attribute
-- `bodyClass`: this will be added in the `class` attribute of the `<body>` element
+* `aposData`: the data fetched from Apostrophe
+* `title`: this will go in the `<title>` HTML tag
+* `lang` which will be set in the `<html>` `lang` attribute
+* `bodyClass`: this will be added in the `class` attribute of the `<body>` element
 
 This layout component will automatically manage the switch between support for
 the editing UI if a user is logged in and a simpler "Run Layout" for all other
@@ -460,12 +460,12 @@ the [attachment field format](https://v3.docs.apostrophecms.org/reference/api/fi
 
 Nothing! Well, almost.
 
-- Your project must be using Apostrophe 3.x.
-- You'll need to `npm update` your project to the latest version of `apostrophe`.
-- You'll need to set the `APOS_EXTERNAL_FRONT_KEY` environment variable to a secret
+* Your project must be using Apostrophe 4.x.
+* You'll need to `npm update` your project to the latest version of `apostrophe`.
+* You'll need to set the `APOS_EXTERNAL_FRONT_KEY` environment variable to a secret
 value of your choosing when running Apostrphe.
-- Make sure you set that **same value** when running your Astro project.
-- To avoid developer confusion, we recommend changing any page templates in your
+* Make sure you set that **same value** when running your Astro project.
+* To avoid developer confusion, we recommend changing any page templates in your
 Apostrophe project to provide a link to your Astro frontend site and
 remove all other output. Everyone, editors included, should go straight to Astro.
 
@@ -525,10 +525,10 @@ situation.
 
 As this integration proxies certain Apostrophe endpoints, there are some routes that are taken by those endpoints:
 
-- `/apos-frontend/[...slug]` for serving Apostrophe assets
-- `/uploads/[...slug]` for serving Apostrophe uploaded assets
-- `/api/v1/[...slug]` and `/[locale]/api/v1/[...slug]` for Apostrophe API endpoints
-- `/login` and `/[locale]/login` for the login page
+* `/apos-frontend/[...slug]` for serving Apostrophe assets
+* `/uploads/[...slug]` for serving Apostrophe uploaded assets
+* `/api/v1/[...slug]` and `/[locale]/api/v1/[...slug]` for Apostrophe API endpoints
+* `/login` and `/[locale]/login` for the login page
 
 As all Apostrophe API endpoints are proxied, you can expose new api routes as usual in your Apostrophe modules, and be able to request them through your Astro application.
 Those proxies are forwarding all of the original request headers, such as cookies, so that Apostrophe login works normally.
