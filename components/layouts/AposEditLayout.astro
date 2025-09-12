@@ -49,7 +49,9 @@ if (aposData.bundleMarkup) {
 
     <div data-apos-refreshable>
       <slot name="beforeMain" />
+      <Fragment set:html={aposData.prependMain} is:inline />
       <slot name="main" />
+      <Fragment set:html={aposData.appendMain} is:inline />
       <slot name="afterMain" />
     </div>
 

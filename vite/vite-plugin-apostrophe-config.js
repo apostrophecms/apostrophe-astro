@@ -1,5 +1,6 @@
 export function vitePluginApostropheConfig(
   aposHost,
+  portMapping = [],
   forwardHeaders = null,
   viewTransitionWorkaround,
   includeResponseHeaders = null,
@@ -23,6 +24,9 @@ export function vitePluginApostropheConfig(
         return `
           export default {
             aposHost: "${aposHost}"
+            ${aposHost === '*' ? `,
+              portMapping: ${JSON.stringify(portMapping)}` : '[]'
+            }
             ${headersToInclude ? `,
               includeResponseHeaders: ${JSON.stringify(headersToInclude)}` : ''
             }

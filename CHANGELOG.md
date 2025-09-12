@@ -6,6 +6,14 @@
 
 * Adds additional handling for the `@apostrophecms/anchors` module to the `AposWidget.astro` component
 * Adds handling for project-level widget options, as well as actually passing per-area options to widgets. Can be accessed through the `options` prop in the widget components.
+* Add support for `prependMain` and `appendMain` in the `aposData` object, allowing for custom HTML to be injected into the `<main>` sections of the layout.
+* Add `portMapping` option.
+
+## 1.5.2 (2025-09-09)
+
+### Fixes
+
+* Corrected the link to the astro apollo pro starter kit in the documentation.
 
 ## 1.5.1 (2025-09-08)
 
