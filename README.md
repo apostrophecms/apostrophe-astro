@@ -141,8 +141,6 @@ at runtime with the `APOS_HOST` environment variable.
 
 During development it defaults automatically to: `http://localhost:3000`
 
-You can use `*` as value to allow all host. Should be used in conjunction with `portMapping` below.
-
 ### `widgetsMapping` (mandatory)  
 
 The file in your project that contains the mapping between Apostrophe widget types and your Astro components (see below).
@@ -150,11 +148,6 @@ The file in your project that contains the mapping between Apostrophe widget typ
 ### `templatesMapping` (mandatory)
 
 The file in your project that contains the mapping between Apostrophe templates and your Astro templates (see below).
-
-### `portMapping` (optional)
-
-An array containing the mapping between the origin port and the target port.
-Setting `[ 4321, 3000 ]` means calls from `http://localhost:4321` will be forwarded to `http://localhost:3000`.
 
 ### `viewTransitionWorkaround` (optional)
 
