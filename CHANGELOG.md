@@ -9,6 +9,11 @@
 * Add support for `prependMain` and `appendMain` in the `aposData` object, allowing for custom HTML to be injected into the `<main>` sections of the layout.
 * Add `portMapping` option.
 
+### Fixes
+
+* Verify that `Host` header is correctly formatted.
+* Fix error and content-type handling in `aposResponse.js`.
+
 ## 1.5.2 (2025-09-09)
 
 ### Fixes
