@@ -11,7 +11,6 @@
 ### Fixes
 
 * Verify that `Host` header is correctly formatted.
-* Fix error and content-type handling in `aposResponse.js`.
 
 ## 1.5.2 (2025-09-09)
 
