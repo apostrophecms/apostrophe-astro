@@ -31,7 +31,7 @@ if (aposData.errorFetchingPage || aposData.page?.type === 'apos-fetch-error') {
 
 
 const Template = templates[aposData.template]
-  || templates[aposData.template.replace(':page', '')]
+  || templates[aposData.template?.replace(':page', '')]
   || templates[aposData.module]
   || templates['apos-no-template'];
 
