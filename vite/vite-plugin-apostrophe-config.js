@@ -25,7 +25,7 @@ export function vitePluginApostropheConfig(
           export default {
             aposHost: "${aposHost}"
             ${aposHost === '*' ? `,
-              portMapping: ${JSON.stringify(portMapping)}` : '[]'
+              portMapping: ${JSON.stringify(portMapping)}` : ''
             }
             ${headersToInclude ? `,
               includeResponseHeaders: ${JSON.stringify(headersToInclude)}` : ''
