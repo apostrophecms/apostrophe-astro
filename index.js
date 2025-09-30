@@ -1,6 +1,6 @@
 import { vitePluginApostropheDoctype } from './vite/vite-plugin-apostrophe-doctype.js';
 import { vitePluginApostropheConfig } from './vite/vite-plugin-apostrophe-config.js';
-import AposSectionTemplateLibraryPreview from './components/templates/AposSectionTemplateLibraryPreview.astro';
+import AposSectionTemplateLibraryPreview from '@apostrophecms/apostrophe-astro/components/templates/AposSectionTemplateLibraryPreview.astro';
 
 const proxy = '@apostrophecms/apostrophe-astro/endpoints/aposProxy.js';
 const proxyWithExternalFront = '@apostrophecms/apostrophe-astro/endpoints/aposProxyWithExternalFrontend.js';
@@ -13,7 +13,7 @@ export default function apostropheIntegration(options) {
         if (!options.widgetsMapping || !options.templatesMapping) {
           throw new Error('Missing required options')
         }
-        // options.templatesMapping['@apostrophecms-pro/section-template-library:preview'] ||= AposSectionTemplateLibraryPreview;
+        options.templatesMapping['@apostrophecms-pro/section-template-library:preview'] ||= AposSectionTemplateLibraryPreview;
         updateConfig({
           vite: {
             plugins: [
