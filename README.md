@@ -116,7 +116,9 @@ export default defineConfig({
       proxyRoutes: [
         // Custom URLs that should be proxied to Apostrophe.
         // Note that all of `/api/v1` is already proxied, so
-        // this is usually unnecessary
+        // this is usually unnecessary. You can also pass
+        // a complete route specification object (see the
+        // Astro injectRoute documentation). Use Astro 4+ syntax
       ]
     })
   ],

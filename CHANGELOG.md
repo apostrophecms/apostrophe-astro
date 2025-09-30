@@ -7,6 +7,8 @@
 * Adds additional handling for the `@apostrophecms/anchors` module to the `AposWidget.astro` component
 * Adds handling for project-level widget options, as well as actually passing per-area options to widgets. Can be accessed through the `options` prop in the widget components.
 * Add support for `prependMain` and `appendMain` in the `aposData` object, allowing for custom HTML to be injected into the `<main>` sections of the layout.
+* `proxyRoutes` can optionally be complete objects ready to pass to [`injectRoute`](https://docs.astro.build/en/reference/integrations-reference/#injectroute-option). 
+* iframe preview support for section template library.
 
 ### Fixes
 

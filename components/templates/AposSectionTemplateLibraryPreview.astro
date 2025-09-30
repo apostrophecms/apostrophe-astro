@@ -1,0 +1,12 @@
+---
+import AposArea from '@apostrophecms/apostrophe-astro/components/AposArea.astro';
+
+const { page, user, query, global } = Astro.props.aposData;
+const { content = {} } = page;
+
+---
+<div class="apos-section-preview">
+  <div class="minimal-container">
+    <AposArea area={content} />
+  </div>
+</div>

@@ -61,6 +61,7 @@ if (aposData.bundleMarkup) {
     <div id="apos-command-menu"></div>
 
     <Fragment set:html={bundlesJs} is:inline />
+    <script>apos.externalFront = 'astro';</script>
     <slot name="endBody" />
   </body>
 </html>
