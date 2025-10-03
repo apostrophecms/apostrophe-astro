@@ -36,13 +36,6 @@ function getWidgetOptions(options) {
   return widgets;
 }
 
-function mergeWidgets(groups:Record<string,Record<string,Object>>) {
-  const widgetOptions = {};
-  for (const group of Object.values(groups)) {
-    Object.assign(widgets, group.widgets || {});
-  }
-  return widgetOptions;
-}
 ---
 <Wrapper {...attributes}>
 {widgets?.map((item) => {
