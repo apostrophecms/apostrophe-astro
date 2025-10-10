@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## 1.6.0 (2025-10-01)
 
 ### Adds
 
