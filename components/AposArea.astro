@@ -5,7 +5,7 @@ const {
   area,
   aposAttributes,
   aposStyle,
-  aspoClassName,
+  aposClassName,
   aposParentOptions,
   widgetComponent,
   ...props
@@ -16,7 +16,7 @@ let attributes = {};
 const widgets = area?.items || [];
 
 const isEdit = area?._edit && Astro.url.searchParams.get("aposEdit");
-const forceWrapper = aposAttributes || aposStyle || aspoClassName;
+const forceWrapper = aposAttributes || aposStyle || aposClassName;
 
 const WidgetComponent = widgetComponent ?? AposWidget;
 
@@ -31,14 +31,14 @@ if (isEdit) {
     "data-choices": JSON.stringify(area?.choices),
     "data-parent-options": JSON.stringify(aposParentOptions ?? {}),
     style: aposStyle ?? "",
-    className: aspoClassName ?? "",
+    className: aposClassName ?? "",
     ...(aposAttributes ?? {}),
     data: JSON.stringify(area),
   };
 } else if (forceWrapper) {
   attributes = {
     style: aposStyle ?? "",
-    className: aspoClassName ?? "",
+    className: aposClassName ?? "",
     ...(aposAttributes ?? {}),
   };
 }
