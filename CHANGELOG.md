@@ -1,5 +1,12 @@
 # Changelog
 
+## UNRELEASED
+
+### Adds
+
+* Refactor `AposArea` to accept custom style, class, and attributes, but also a `widgetComponent` prop. The latter is allowing for custom widget rendering components to be used. This is particularly useful for complex widgets like the Layout widget that need to render the output in particular order/way.
+* Introduce `LayoutWidget.astro` and `LayoutColumnWidget.astro` components to be used in the project level widget mapping.
+
 ## 1.6.0 (2025-10-01)
 
 ### Adds
