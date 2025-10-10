@@ -703,6 +703,23 @@ export default defineConfig({
 Without this logic, the `virtual:` URLs used to access configuration information
 will cause the build to fail.
 
+## Enabling the `render-area` option to ApostropheCMS REST APIs
+
+In order to enable section template library previews, and also unlock the `?render-area=1` and `?render-area=inline` query parameters to ApostropheCMS REST APIs in general, you'll need to add the following route:
+
+```markup
+---
+// Place this file in: src/pages/api/apos-external-front/render-area.astro
+
+import AposRenderAreaForApi from '@apostrophecms/apostrophe-astro/components/AposRenderAreaForApi.astro';
+---
+<AposRenderAreaForApi />
+```
+
+This file provides a "bridge" between ApostropheCMS and Astro, allowing ApostropheCMS to "call back" to the Astro project to render the content for a particular area.
+
+Our recently updated starter kits already include this file.
+
 ## Conclusion
 
 This module provides a new way to use ApostropheCMS: as a back end
