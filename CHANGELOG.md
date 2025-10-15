@@ -6,6 +6,7 @@
 
 * Refactor `AposArea` to accept custom style, class, and attributes, but also a `widgetComponent` prop. The latter is allowing for custom widget rendering components to be used. This is particularly useful for complex widgets like the Layout widget that need to render the output in particular order/way.
 * Introduce `LayoutWidget.astro` and `LayoutColumnWidget.astro` components to be used in the project level widget mapping.
+* Adds new `AposRenderAreaForAstro` component, specifically designed to be used to implement the new `/api/apos-external-frontend/render-area` route. This allows section template library previews to work in Astro projects and also enables calling the ApostropheCMS REST APIs with `?render-area` when using Astro on the front end. See the documentation for more information on adding this route to existing projects.
 
 ## 1.6.0 (2025-10-01)
 
