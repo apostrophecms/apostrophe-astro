@@ -268,6 +268,9 @@ Astro templates for all of the common Apostrophe widgets. However, all of the st
 Note that the Apostrophe widget name (on the left) is the name of your widget module **without**
 the `-widget` part.
 
+> [!TIP]
+> The `@apostrophecms/layout-widget` needs some extra configuration and addition to areas in your ApostropheCMS project. You can read more in the [documentation](https://docs.apostrophecms.org/guide/core-widgets.html#layout-widget).
+
 The naming of your Astro widget templates is up to you. The above convention is just
 a suggestion.
 
@@ -757,6 +760,9 @@ export default {
 ```
 
 This file extends the default column widget to define which content widgets editors can add inside each column. Avoid nesting layout widgets inside other layouts to prevent excessive DOM complexity and performance issues.
+
+> [!TIP]
+> You can read more about configuring and using the layout-widget in the [documentation](https://docs.apostrophecms.org/guide/core-widgets.html#layout-widget).
 
 ### Frontend updates
 The `@apostrophecms/apostrophe-astro` package contains templates for the layout widget and column, but like the other widgets, they have to be mapped to the corresponding Apostrophe widgets.
