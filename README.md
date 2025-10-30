@@ -246,15 +246,16 @@ in the `widgetsMapping` option of the `apostrophe` integration, as seen above.
 import RichTextWidget from './RichTextWidget.astro';
 import ImageWidget from './ImageWidget.astro';
 import VideoWidget from './VideoWidget.astro';
-import TwoColumnWidget from './TwoColumnWidget.astro';
+import LayoutWidget from '@apostrophecms/apostrophe-astro/widgets/LayoutWidget.astro';
+import LayoutColumnWidget from '@apostrophecms/apostrophe-astro/widgets/LayoutColumnWidget.astro';
 
 const widgetComponents = {
   // Standard widgets, but we must provide our own Astro components for them
   '@apostrophecms/rich-text': RichTextWidget,
   '@apostrophecms/image': ImageWidget,
   '@apostrophecms/video': VideoWidget,
-  // Project-level widget
-  'two-column': TwoColumnWidget
+  '@apostrophecms/layout': LayoutWidget,
+  '@apostrophecms/layout-column': LayoutColumnWidget
 };
 
 export default widgetComponents;
@@ -266,6 +267,9 @@ Astro templates for all of the common Apostrophe widgets. However, all of the st
 
 Note that the Apostrophe widget name (on the left) is the name of your widget module **without**
 the `-widget` part.
+
+> [!TIP]
+> The `@apostrophecms/layout-widget` needs some extra configuration and addition to areas in your ApostropheCMS project. You can read more in the [documentation](https://docs.apostrophecms.org/guide/core-widgets.html#layout-widget).
 
 The naming of your Astro widget templates is up to you. The above convention is just
 a suggestion.
@@ -719,6 +723,65 @@ import AposRenderAreaForApi from '@apostrophecms/apostrophe-astro/components/Apo
 This file provides a "bridge" between ApostropheCMS and Astro, allowing ApostropheCMS to "call back" to the Astro project to render the content for a particular area.
 
 Our recently updated starter kits already include this file.
+
+## Enabling the `@apostrophecms/layout-widget` in an existing project
+If you are using any of our starter kits, or you are following the integration steps outlined above, you will have the core layout-widget installed. For existing projects you will have a few steps to activate it.
+
+### Backend updates
+1. Add `@apostrophecms/layout` to any areas where you will want to add the widget.
+
+By default, the layout widget columns will include the core rich-text, image, and video widgets. If you want any additional widget types, you will have to follow several additional steps:
+
+1. Create a `backend/modules/@apostrophecms/layout-column-widget/index.js` file.
+2. Add the following code:
+```javascript
+export default {
+  fields(self, options) {
+    return {
+      add: {
+        content: {
+          type: 'area',
+          label: 'Main Content',
+          options: {
+            widgets: {
+              // add any project-specific content widgets
+              // nesting layout widgets can lead to poor performance
+              // or rendering issues
+              '@apostrophecms/rich-text': {},
+              '@apostrophecms/image': {},
+              '@apostrophecms/video': {}
+            }
+          }
+        }
+      }
+    };
+  }
+};
+```
+
+This file extends the default column widget to define which content widgets editors can add inside each column. Avoid nesting layout widgets inside other layouts to prevent excessive DOM complexity and performance issues.
+
+> [!TIP]
+> You can read more about configuring and using the layout-widget in the [documentation](https://docs.apostrophecms.org/guide/core-widgets.html#layout-widget).
+
+### Frontend updates
+The `@apostrophecms/apostrophe-astro` package contains templates for the layout widget and column, but like the other widgets, they have to be mapped to the corresponding Apostrophe widgets.
+
+1. Open the `frontend/src/widgets/index.js` file.
+2. Import the `layout` and `layout-column` widgets
+  ``` javascript
+    import LayoutWidget from '@apostrophecms/apostrophe-astro/widgets/LayoutWidget.astro';
+    import LayoutColumnWidget from '@apostrophecms/apostrophe-astro/widgets/LayoutColumnWidget.astro';
+  ```
+3. Map the components in the `widgetComponents` object
+  ``` javascript
+    export const widgetComponents = {
+    ...widgetComponents,
+    '@apostrophecms/layout': LayoutWidget,
+    '@apostrophecms/layout-column': LayoutColumnWidget
+  };
+  ```
+Once you’ve added these mappings, restart your Apostrophe server and refresh the editor. The layout widget should now appear as an option in any area that includes @apostrophecms/layout.
 
 ## Conclusion
 
