@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## 1.7.1 (2025-11-25)
 
 * Add support for `sluggo` options in the `slugify` util helper and `stripAccents` option to remove accents from characters.
 
