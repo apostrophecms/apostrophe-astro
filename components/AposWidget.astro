@@ -37,20 +37,15 @@ if (isEdit) {
 } else if (shouldWrapWithAnchor) {
   WrapperElement = 'div';
   wrapperAttributes[anchorAttribute] = widget.anchorId;
+} else {
+  WrapperElement = Fragment;
 }
-
-const shouldWrap = isEdit || shouldWrapWithAnchor;
 ---
--- AposWidget.astro --
-{options.stylesAttributes}
-{ Component &&
-  <>
-    {shouldWrap ? (
-      <WrapperElement {...wrapperAttributes}>
-        <Component {widget} {options} {...props}/>
-      </WrapperElement>
-    ) : (
+{Component &&
+  <WrapperElement {...wrapperAttributes}>
+    <Fragment set:html={options.stylesElements} />
+    <div {...options.stylesAttributes}>
       <Component {widget} {options} {...props}/>
-    )}
-  </>
+    </div>
+  </WrapperElement>
 }
