@@ -27,6 +27,10 @@ const anchorAttribute = options?.anchorAttribute || 'id';
 let WrapperElement = 'div';
 let wrapperAttributes = {};
 
+let StylesWrapperElement = 'div';
+let stylesElements = options?.aposStylesElements || null;
+let stylesAttributes = options?.aposStylesAttributes || {};
+
 if (isEdit) {
   WrapperElement = 'div';
   wrapperAttributes['data-apos-widget'] = widget._id;
@@ -40,12 +44,19 @@ if (isEdit) {
 } else {
   WrapperElement = Fragment;
 }
+
+if (options?.aposStylesWrapper === false) {
+  StylesWrapperElement = Fragment;
+  stylesElements = null;
+  stylesAttributes = {};
+}
+
 ---
 {Component &&
   <WrapperElement {...wrapperAttributes}>
-    <Fragment set:html={options.stylesElements} />
-    <div {...options.stylesAttributes}>
+    <Fragment set:html={stylesElements} />
+    <StylesWrapperElement {...stylesAttributes}>
       <Component {widget} {options} {...props}/>
-    </div>
+    </StylesWrapperElement>
   </WrapperElement>
 }
