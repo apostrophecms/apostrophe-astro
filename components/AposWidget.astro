@@ -54,7 +54,7 @@ if (options?.aposStylesWrapper === false) {
 ---
 {Component &&
   <WrapperElement {...wrapperAttributes}>
-    <Fragment set:html={stylesElements} />
+    <Fragment set:html={stylesElements} is:inline />
     <StylesWrapperElement {...stylesAttributes}>
       <Component {widget} {options} {...props}/>
     </StylesWrapperElement>
